@@ -6,7 +6,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Reflection;
 
-namespace RazorSpy.SyntaxTree
+namespace RazorSpy.Contracts.SyntaxTree
 {
     public class ParserResult
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RazorSpy.SyntaxTree
+namespace RazorSpy.Contracts.SyntaxTree
 {
     public class Block : SyntaxTreeNode
     {

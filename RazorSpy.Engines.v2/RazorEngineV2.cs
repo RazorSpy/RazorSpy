@@ -1,35 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RazorSpy.SyntaxTree;
-using System.IO;
 using System.CodeDom;
+using System.ComponentModel.Composition;
+using System.IO;
 using System.Web.Razor;
+using RazorSpy.Contracts;
+using RazorSpy.Contracts.SyntaxTree;
 
 namespace RazorSpy.Engines.v2
 {
+    [Export(typeof(RazorEngine))]
+    [ExportMetadata("Version", "2.0.0.0")]
     public class RazorEngineV2 : RazorEngine
     {
         public override ParserResult Parse(TextReader reader)
         {
-            RazorEngineHost host = new RazorEngineHost(new CSharpRazorCodeLanguage());
-            RazorTemplateEngine engine = new RazorTemplateEngine(host);
+            RazorTemplateEngine engine = CreateEngine();
             var result = engine.ParseTemplate(reader);
             return new ParserResult()
             {
-                Success = result.Success
+                Success = result.Success,
+                Document = result.Document.ToRazorSpy()
             };
         }
 
-        public override SyntaxTree.GenerationResult Generate(SyntaxTreeNode document)
+        public override GenerationResult Generate(TextReader document)
+        {
+            RazorTemplateEngine engine = CreateEngine();
+            var result = engine.GenerateCode(document);
+            return new GenerationResult()
+            {
+                Success = result.Success,
+                Document = result.Document.ToRazorSpy(),
+                Code = result.GeneratedCode
+            };
+        }
+
+        public override CompilationResult Compile(TextReader code)
         {
             throw new NotImplementedException();
         }
 
-        public override SyntaxTree.CompilationResult Compile(CodeCompileUnit code)
+        private static RazorTemplateEngine CreateEngine()
         {
-            throw new NotImplementedException();
+            RazorEngineHost host = new RazorEngineHost(new CSharpRazorCodeLanguage());
+            RazorTemplateEngine engine = new RazorTemplateEngine(host);
+            return engine;
         }
     }
 }

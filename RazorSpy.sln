@@ -1,9 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy", "RazorSpy\RazorSpy.csproj", "{87DB0FEC-705D-42CB-802B-CC7B59AB8BE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.v2", "RazorSpy.Engines.v2\RazorSpy.Engines.v2.csproj", "{F0CB6162-D719-4F26-9525-6CCB3D3AD626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Contracts", "RazorSpy.Contracts\RazorSpy.Contracts.csproj", "{5F0CC878-487D-493E-9F7C-C9DD362212ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E30885EC-39E1-406D-AE34-89145D83DC36}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5F0CC878-487D-493E-9F7C-C9DD362212ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{87DB0FEC-705D-42CB-802B-CC7B59AB8BE7}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{87DB0FEC-705D-42CB-802B-CC7B59AB8BE7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{87DB0FEC-705D-42CB-802B-CC7B59AB8BE7}.Debug|Mixed Platforms.Build.0 = Debug|x86

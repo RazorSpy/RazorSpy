@@ -6,9 +6,9 @@ using System.Web.Razor;
 using System.Web.Razor.Generator;
 using RazorSpy.Contracts;
 
-namespace RazorSpy.Engines.v2
+namespace RazorSpy.Engines.v1
 {
-    public class TemplateHostV2 : TemplateHost
+    public class TemplateHostV1 : TemplateHost
     {
         public RazorEngineHost CreateHost()
         {
@@ -29,18 +29,16 @@ namespace RazorSpy.Engines.v2
                 writeToMethodName: "WriteTo",
                 writeLiteralToMethodName: "WriteLiteralTo",
                 templateTypeName: "HelperResult",
-                defineSectionMethodName: "DefineSection",
-                beginContextMethodName: "BeginContext",
-                endContextMethodName: "EndContext");
+                defineSectionMethodName: "DefineSection");
         }
 
         private RazorCodeLanguage CreateLanguage()
         {
-            if (ReferenceEquals(Language, RazorEngineV2.CSharpLanguage))
+            if (ReferenceEquals(Language, RazorEngineV1.CSharpLanguage))
             {
                 return new CSharpRazorCodeLanguage();
             }
-            else if (ReferenceEquals(Language, RazorEngineV2.VBLanguage))
+            else if (ReferenceEquals(Language, RazorEngineV1.VBLanguage))
             {
                 return new VBRazorCodeLanguage();
             }
@@ -55,7 +53,7 @@ namespace RazorSpy.Engines.v2
     {
         public static RazorEngineHost CreateHost(this TemplateHost self)
         {
-            TemplateHostV2 host = self as TemplateHostV2;
+            TemplateHostV1 host = self as TemplateHostV1;
             return host == null ? null : host.CreateHost();
         }
     }

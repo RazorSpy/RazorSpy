@@ -11,7 +11,7 @@ namespace RazorSpy.Contracts.SyntaxTree
     public class ParserResult
     {
         public bool Success { get; set; }
-        public SyntaxTreeNode Document { get; set; }
+        public Block Document { get; set; }
     }
 
     public class GenerationResult : ParserResult

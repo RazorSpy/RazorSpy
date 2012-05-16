@@ -1,14 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Reactive.Linq;
 using System.Linq;
-using Microsoft.CSharp;
+using System.Reactive.Linq;
 using RazorSpy.Contracts;
 using RazorSpy.Contracts.SyntaxTree;
 using ReactiveUI;
-using System.Collections.Generic;
-using System.Reactive;
 
 namespace RazorSpy.ViewModel
 {
@@ -20,10 +18,19 @@ namespace RazorSpy.ViewModel
         private string _razorCode;
         private RazorLanguage _selectedLanguage;
         private bool _designTimeMode;
-        private ObservableAsPropertyHelper<string> _generatedCode;
+        private IEnumerable<Block> _generatedTree;
+        private string _generatedCode;
+        private string _status;
+
         private ObservableAsPropertyHelper<IEnumerable<RazorLanguage>> _languages;
         private ObservableAsPropertyHelper<bool> _multiEngine;
         private ObservableAsPropertyHelper<bool> _singleEngine;
+
+        public string Status
+        {
+            get { return _status; }
+            set { _status = this.RaiseAndSetIfChanged(m => m.Status, value); }
+        }
 
         public string RazorCode
         {
@@ -56,14 +63,21 @@ namespace RazorSpy.ViewModel
             set { _designTimeMode = this.RaiseAndSetIfChanged(m => m.DesignTimeMode, value); }
         }
 
-        public IEnumerable<RazorLanguage> Languages
+        public IEnumerable<Block> GeneratedTree
         {
-            get { return _languages.Value; }
+            get { return _generatedTree; }
+            private set { _generatedTree = this.RaiseAndSetIfChanged(m => m.GeneratedTree, value); }
         }
 
         public string GeneratedCode
         {
-            get { return _generatedCode.Value; }
+            get { return _generatedCode; }
+            private set { _generatedCode = this.RaiseAndSetIfChanged(m => m.GeneratedCode, value); }
+        }
+
+        public IEnumerable<RazorLanguage> Languages
+        {
+            get { return _languages.Value; }
         }
 
         public bool MultiEngine
@@ -91,14 +105,19 @@ namespace RazorSpy.ViewModel
             _languages.Subscribe(_ => EnsureLanguage());
             Engines.Changed.Subscribe(_ => EnsureEngine());
 
-            _generatedCode = this.ObservableToProperty(
-                Observable.Merge(
-                    this.ObservableForProperty(vm => vm.DesignTimeMode).IgnoreValues(),
-                    this.ObservableForProperty(vm => vm.SelectedEngine).IgnoreValues(),
-                    this.ObservableForProperty(vm => vm.SelectedLanguage).IgnoreValues(),
-                    this.ObservableForProperty(vm => vm.RazorCode).Buffer(TimeSpan.FromMilliseconds(100)).IgnoreValues())
-                    .Select(_ => Regenerate()),
-                vm => vm.GeneratedCode);
+            Observable.Merge(
+                this.ObservableForProperty(vm => vm.DesignTimeMode).IgnoreValues(),
+                this.ObservableForProperty(vm => vm.SelectedEngine).IgnoreValues(),
+                this.ObservableForProperty(vm => vm.SelectedLanguage).IgnoreValues(),
+                this.ObservableForProperty(vm => vm.RazorCode).IgnoreValues())
+                .ObserveOn(RxApp.DeferredScheduler)
+                .Subscribe(_ => Regenerate());
+
+            this.PropertyChanged += MainViewModel_PropertyChanged;
+        }
+
+        void MainViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
         }
 
         private void EnsureLanguage()
@@ -117,10 +136,11 @@ namespace RazorSpy.ViewModel
             }
         }
 
-        private string Regenerate()
+        private void Regenerate()
         {
             if (SelectedEngine != null && SelectedLanguage != null && !String.IsNullOrEmpty(RazorCode))
             {
+                Status = "Compiling...";
                 // Configure the host
                 RazorEngine engine = SelectedEngine.Value;
                 TemplateHost host = engine.CreateHost();
@@ -135,10 +155,14 @@ namespace RazorSpy.ViewModel
                 }
                 if (result != null)
                 {
-                    return result.Code.GenerateString(SelectedLanguage.CreateCodeDomProvider());
+                    GeneratedCode = result.Code.GenerateString(SelectedLanguage.CreateCodeDomProvider());
+                    GeneratedTree = new[] { result.Document };
+                    Status = result.Success ? "Success" : "Errors during compilation";
+                    return;
                 }
             }
-            return String.Empty;
+            GeneratedCode = String.Empty;
+            GeneratedTree = null;
         }
     }
 }

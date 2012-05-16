@@ -37,6 +37,7 @@
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AspNetRazor.Core.2.0.20126.16343\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,12 +58,15 @@
     <ProjectReference Include="..\RazorSpy.Contracts\RazorSpy.Contracts.csproj">
       <Project>{5f0cc878-487d-493e-9f7c-c9dd362212ed}</Project>
       <Name>RazorSpy.Contracts</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages"
-copy "$(TargetPath)" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages"</PostBuildEvent>
+if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

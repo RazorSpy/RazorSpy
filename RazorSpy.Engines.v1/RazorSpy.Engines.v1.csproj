@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F0CC878-487D-493E-9F7C-C9DD362212ED}</ProjectGuid>
+    <ProjectGuid>{61D14373-3D6E-4B58-8767-2A7F7326CA95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RazorSpy.Contracts</RootNamespace>
-    <AssemblyName>RazorSpy.Contracts</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>RazorSpy.Engines.v1</RootNamespace>
+    <AssemblyName>RazorSpy.Engines.v1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,7 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetRazor.Core.1.0.20105.407\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,17 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConversionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RazorEngine.cs" />
-    <Compile Include="RazorLanguage.cs" />
-    <Compile Include="SyntaxTree\Block.cs" />
-    <Compile Include="SyntaxTree\CompilationResult.cs" />
-    <Compile Include="SyntaxTree\SourceLocation.cs" />
-    <Compile Include="SyntaxTree\Span.cs" />
-    <Compile Include="SyntaxTree\SyntaxTreeNode.cs" />
-    <Compile Include="TemplateHost.cs" />
+    <Compile Include="RazorEngineV1.cs" />
+    <Compile Include="TemplateHostV1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RazorSpy.Contracts\RazorSpy.Contracts.csproj">
+      <Project>{5f0cc878-487d-493e-9f7c-c9dd362212ed}</Project>
+      <Name>RazorSpy.Contracts</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages"
+if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -31,8 +31,12 @@ namespace RazorSpy
             AssemblyCatalog thisAsm = new AssemblyCatalog(typeof(App).Assembly);
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(thisAsm);
-            if(Directory.Exists("Packages")) {
-                catalog.Catalogs.Add(new DirectoryCatalog("Packages"));
+            if (Directory.Exists("Packages"))
+            {
+                foreach (string dir in Directory.GetDirectories("Packages"))
+                {
+                    catalog.Catalogs.Add(new DirectoryCatalog(dir));
+                }
             }
             container = new CompositionContainer(catalog);
             container.Compose(new CompositionBatch());

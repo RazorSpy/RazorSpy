@@ -8,10 +8,16 @@ using System.CodeDom;
 
 namespace RazorSpy.Contracts
 {
+    public interface IRazorEngineMetadata
+    {
+        string Version { get; }
+    }
+
     public abstract class RazorEngine
     {
-        public abstract ParserResult Parse(TextReader reader);
-        public abstract GenerationResult Generate(TextReader reader);
-        public abstract CompilationResult Compile(TextReader reader);
+        public abstract IEnumerable<RazorLanguage> Languages { get; }
+
+        public abstract TemplateHost CreateHost();
+        public abstract GenerationResult Generate(TextReader reader, TemplateHost host);
     }
 }

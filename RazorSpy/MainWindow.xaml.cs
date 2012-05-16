@@ -38,7 +38,10 @@ namespace RazorSpy
             {
                 ViewModel = new MainViewModel();
             }
-            this.RegisterWithContainer();
+            else
+            {
+                this.RegisterWithContainer();
+            }
             InitializeComponent();
         }
     }

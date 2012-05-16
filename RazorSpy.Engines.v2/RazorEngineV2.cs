@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Web.Razor;
@@ -12,20 +13,25 @@ namespace RazorSpy.Engines.v2
     [ExportMetadata("Version", "2.0.0.0")]
     public class RazorEngineV2 : RazorEngine
     {
-        public override ParserResult Parse(TextReader reader)
+        internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#");
+        internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB");
+
+        public override IEnumerable<RazorLanguage> Languages
         {
-            RazorTemplateEngine engine = CreateEngine();
-            var result = engine.ParseTemplate(reader);
-            return new ParserResult()
-            {
-                Success = result.Success,
-                Document = result.Document.ToRazorSpy()
-            };
+            get {
+                yield return CSharpLanguage;
+                yield return VBLanguage;
+            }
         }
 
-        public override GenerationResult Generate(TextReader document)
+        public override TemplateHost CreateHost()
         {
-            RazorTemplateEngine engine = CreateEngine();
+            return new TemplateHostV2();
+        }
+
+        public override GenerationResult Generate(TextReader document, TemplateHost host)
+        {
+            RazorTemplateEngine engine = CreateEngine(host);
             var result = engine.GenerateCode(document);
             return new GenerationResult()
             {
@@ -35,15 +41,9 @@ namespace RazorSpy.Engines.v2
             };
         }
 
-        public override CompilationResult Compile(TextReader code)
+        private static RazorTemplateEngine CreateEngine(TemplateHost host)
         {
-            throw new NotImplementedException();
-        }
-
-        private static RazorTemplateEngine CreateEngine()
-        {
-            RazorEngineHost host = new RazorEngineHost(new CSharpRazorCodeLanguage());
-            RazorTemplateEngine engine = new RazorTemplateEngine(host);
+            RazorTemplateEngine engine = new RazorTemplateEngine(host.CreateHost());
             return engine;
         }
     }

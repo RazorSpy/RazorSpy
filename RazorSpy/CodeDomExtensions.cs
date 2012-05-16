@@ -10,9 +10,8 @@ namespace RazorSpy
 {
     public static class CodeDomExtensions
     {
-        public static string GenerateString<T>(this CodeCompileUnit self) where T : CodeDomProvider, new()
+        public static string GenerateString(this CodeCompileUnit self, CodeDomProvider provider)
         {
-            T provider = new T();
             StringBuilder b = new StringBuilder();
             using (TextWriter writer = new StringWriter(b))
             {

@@ -80,6 +80,8 @@
     <Compile Include="ObservableExtensions.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\StatusType.cs" />
+    <Compile Include="Xaml\EnumToResourceValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

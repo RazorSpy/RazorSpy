@@ -3,9 +3,20 @@
         xmlns:vm="clr-namespace:RazorSpy.ViewModel"
         xmlns:tree="clr-namespace:RazorSpy.Contracts.SyntaxTree;assembly=RazorSpy.Contracts"
         xmlns:rxui="clr-namespace:ReactiveUI.Xaml;assembly=ReactiveUI.Xaml"
+        xmlns:spyx="clr-namespace:RazorSpy.Xaml"
+        xmlns:col="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModel="clr-namespace:RazorSpy.ViewModel" mc:Ignorable="d" x:Class="RazorSpy.MainWindow"
         Title="RazorSpy" DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}" Width="755" Height="504">
+    <Window.Resources>
+        <spyx:EnumToDictionaryValueConverter x:Key="StatusTypeConverter">
+            <spyx:EnumToDictionaryValueConverter.Mappings>
+                <SolidColorBrush x:Key="Success" Color="{StaticResource MetroBlueBrush}" />
+                <SolidColorBrush x:Key="Error" Color="{StaticResource MetroRedBrush}" />
+            </spyx:EnumToDictionaryValueConverter.Mappings>
+        </spyx:EnumToDictionaryValueConverter>
+    </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,5">
             <Label Content="Version:" />
@@ -15,7 +26,7 @@
             <ComboBox Width="Auto" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" DisplayMemberPath="Name" VerticalAlignment="Center" />
             <CheckBox Content="Design Time Mode" IsChecked="{Binding DesignTimeMode}" Margin="5" />
         </StackPanel>
-        <StatusBar DockPanel.Dock="Bottom">
+        <StatusBar DockPanel.Dock="Bottom" Background="{Binding StatusType, Converter={StaticResource StatusTypeConverter}}">
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding Status}" Padding="2.5"/>
             </StackPanel>

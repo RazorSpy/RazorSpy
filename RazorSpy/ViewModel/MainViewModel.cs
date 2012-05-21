@@ -21,6 +21,7 @@ namespace RazorSpy.ViewModel
         private IEnumerable<Block> _generatedTree;
         private string _generatedCode;
         private string _status;
+        private StatusType _statusType;
 
         private ObservableAsPropertyHelper<IEnumerable<RazorLanguage>> _languages;
         private ObservableAsPropertyHelper<bool> _multiEngine;

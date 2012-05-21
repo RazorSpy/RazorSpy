@@ -61,6 +61,7 @@
     			</Setter.Value>
     		</Setter>
     	</Style>
+        <Color x:Key="MetroRedBrush">#FFE51400</Color>
     	<Color x:Key="MetroBlueBrush">#FF1BA1E2</Color>
     	<Color x:Key="MetroOrangeBrush">#FFF09609</Color>
     	<Style x:Key="ParseTreeItemStyle" TargetType="{x:Type TreeViewItem}">

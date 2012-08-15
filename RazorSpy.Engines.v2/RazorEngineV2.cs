@@ -9,14 +9,14 @@ using RazorSpy.Contracts.SyntaxTree;
 
 namespace RazorSpy.Engines.v2
 {
-    [Export(typeof(RazorEngine))]
+    [Export(typeof(IRazorEngine))]
     [ExportMetadata("Version", "2.0.0.0")]
-    public class RazorEngineV2 : RazorEngine
+    public class RazorEngineV2 : IRazorEngine
     {
         internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#");
         internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB");
 
-        public override IEnumerable<RazorLanguage> Languages
+        public IEnumerable<RazorLanguage> Languages
         {
             get {
                 yield return CSharpLanguage;
@@ -24,12 +24,12 @@ namespace RazorSpy.Engines.v2
             }
         }
 
-        public override TemplateHost CreateHost()
+        public ITemplateHost CreateHost()
         {
             return new TemplateHostV2();
         }
 
-        public override GenerationResult Generate(TextReader document, TemplateHost host)
+        public GenerationResult Generate(TextReader document, ITemplateHost host)
         {
             RazorTemplateEngine engine = CreateEngine(host);
             var result = engine.GenerateCode(document);
@@ -41,7 +41,7 @@ namespace RazorSpy.Engines.v2
             };
         }
 
-        private static RazorTemplateEngine CreateEngine(TemplateHost host)
+        private static RazorTemplateEngine CreateEngine(ITemplateHost host)
         {
             RazorTemplateEngine engine = new RazorTemplateEngine(host.CreateHost());
             return engine;

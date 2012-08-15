@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RazorSpy.Contracts.SyntaxTree
 {
+    [Serializable]
     public abstract class SyntaxTreeNode
     {
         public SourceLocation Start { get; set; }

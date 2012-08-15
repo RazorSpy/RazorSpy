@@ -8,17 +8,20 @@ using System.Reflection;
 
 namespace RazorSpy.Contracts.SyntaxTree
 {
+    [Serializable]
     public class ParserResult
     {
         public bool Success { get; set; }
         public Block Document { get; set; }
     }
 
+    [Serializable]
     public class GenerationResult : ParserResult
     {
         public CodeCompileUnit Code { get; set; }
     }
 
+    [Serializable]
     public class CompilationResult : GenerationResult
     {
         public CompilerResults Compiler { get; set; }

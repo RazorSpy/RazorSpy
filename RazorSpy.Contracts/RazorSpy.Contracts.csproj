@@ -42,14 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RazorEngine.cs" />
+    <Compile Include="IRazorEngine.cs" />
     <Compile Include="RazorLanguage.cs" />
     <Compile Include="SyntaxTree\Block.cs" />
     <Compile Include="SyntaxTree\CompilationResult.cs" />
     <Compile Include="SyntaxTree\SourceLocation.cs" />
     <Compile Include="SyntaxTree\Span.cs" />
     <Compile Include="SyntaxTree\SyntaxTreeNode.cs" />
-    <Compile Include="TemplateHost.cs" />
+    <Compile Include="ITemplateHost.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

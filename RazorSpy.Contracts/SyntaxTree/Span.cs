@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RazorSpy.Contracts.SyntaxTree
 {
+    [Serializable]
     public class Span : SyntaxTreeNode
     {
         public string Kind { get; set; }

@@ -13,16 +13,15 @@ namespace RazorSpy.ViewModel
     [Export]
     public class MainViewModel : ReactiveObject
     {
-        private ReactiveCollection<Lazy<RazorEngine, IRazorEngineMetadata>> _engines = new ReactiveCollection<Lazy<RazorEngine, IRazorEngineMetadata>>();
-        private Lazy<RazorEngine, IRazorEngineMetadata> _selectedEngine;
+        private ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>> _engines = new ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>>();
+        private Lazy<IRazorEngine, IRazorEngineMetadata> _selectedEngine;
         private string _razorCode;
         private RazorLanguage _selectedLanguage;
         private bool _designTimeMode;
         private IEnumerable<Block> _generatedTree;
         private string _generatedCode;
         private string _status;
-        private StatusType _statusType;
-
+        
         private ObservableAsPropertyHelper<IEnumerable<RazorLanguage>> _languages;
         private ObservableAsPropertyHelper<bool> _multiEngine;
         private ObservableAsPropertyHelper<bool> _singleEngine;
@@ -40,13 +39,13 @@ namespace RazorSpy.ViewModel
         }
 
         [ImportMany]
-        public ReactiveCollection<Lazy<RazorEngine, IRazorEngineMetadata>> Engines
+        public ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>> Engines
         {
             get { return _engines; }
             set { _engines = this.RaiseAndSetIfChanged(m => m.Engines, value); }
         }
 
-        public Lazy<RazorEngine, IRazorEngineMetadata> SelectedEngine
+        public Lazy<IRazorEngine, IRazorEngineMetadata> SelectedEngine
         {
             get { return _selectedEngine; }
             set { _selectedEngine = this.RaiseAndSetIfChanged(m => m.SelectedEngine, value); }
@@ -143,8 +142,8 @@ namespace RazorSpy.ViewModel
             {
                 Status = "Compiling...";
                 // Configure the host
-                RazorEngine engine = SelectedEngine.Value;
-                TemplateHost host = engine.CreateHost();
+                IRazorEngine engine = SelectedEngine.Value;
+                ITemplateHost host = engine.CreateHost();
                 host.Language = SelectedLanguage;
                 host.DesignTimeMode = DesignTimeMode;
 

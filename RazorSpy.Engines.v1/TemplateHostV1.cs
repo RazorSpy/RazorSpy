@@ -8,8 +8,11 @@ using RazorSpy.Contracts;
 
 namespace RazorSpy.Engines.v1
 {
-    public class TemplateHostV1 : TemplateHost
+    public class TemplateHostV1 : ITemplateHost
     {
+        public RazorLanguage Language { get; set; }
+        public bool DesignTimeMode { get; set; }
+
         public RazorEngineHost CreateHost()
         {
             RazorCodeLanguage language = CreateLanguage();
@@ -51,7 +54,7 @@ namespace RazorSpy.Engines.v1
 
     internal static class HostExtensions
     {
-        public static RazorEngineHost CreateHost(this TemplateHost self)
+        public static RazorEngineHost CreateHost(this ITemplateHost self)
         {
             TemplateHostV1 host = self as TemplateHostV1;
             return host == null ? null : host.CreateHost();

@@ -6,6 +6,7 @@ using System.Text;
 
 namespace RazorSpy.Contracts
 {
+    [Serializable]
     public class RazorLanguage
     {
         public string Id { get; private set; }

@@ -13,11 +13,10 @@ namespace RazorSpy.Contracts
         string Version { get; }
     }
 
-    public abstract class RazorEngine
+    public interface IRazorEngine
     {
-        public abstract IEnumerable<RazorLanguage> Languages { get; }
-
-        public abstract TemplateHost CreateHost();
-        public abstract GenerationResult Generate(TextReader reader, TemplateHost host);
+        IEnumerable<RazorLanguage> Languages { get; }
+        ITemplateHost CreateHost();
+        GenerationResult Generate(TextReader reader, ITemplateHost host);
     }
 }

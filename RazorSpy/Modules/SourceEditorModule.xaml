@@ -1,0 +1,18 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Modules="clr-namespace:RazorSpy.Modules" x:Class="RazorSpy.Modules.SourceEditorModule" 
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=Modules:SourceEditorModuleModel}"
+             d:DesignHeight="300" d:DesignWidth="300" DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}">
+    <Grid Margin="10,0,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Razor:" HorizontalAlignment="Stretch" Width="Auto" Margin="0,0,0,0"/>
+        <TextBox Margin="0" Grid.Row="1" AcceptsReturn="True" AcceptsTab="True" TextOptions.TextFormattingMode="Display" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Text="{Binding DocumentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</UserControl>

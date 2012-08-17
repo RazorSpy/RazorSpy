@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using RazorSpy.Contracts;
 using RazorSpy.Contracts.SyntaxTree;
+using RazorSpy.Services;
 using ReactiveUI;
 
 namespace RazorSpy.ViewModel
@@ -13,156 +15,47 @@ namespace RazorSpy.ViewModel
     [Export]
     public class MainViewModel : ReactiveObject
     {
-        private ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>> _engines = new ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>>();
-        private Lazy<IRazorEngine, IRazorEngineMetadata> _selectedEngine;
-        private string _razorCode;
-        private RazorLanguage _selectedLanguage;
-        private bool _designTimeMode;
-        private IEnumerable<Block> _generatedTree;
-        private string _generatedCode;
-        private string _status;
-        
-        private ObservableAsPropertyHelper<IEnumerable<RazorLanguage>> _languages;
-        private ObservableAsPropertyHelper<bool> _multiEngine;
-        private ObservableAsPropertyHelper<bool> _singleEngine;
+        // Services
+        private IDocumentService _documentService;
+        private IRazorConfigurationService _configService;
 
-        public string Status
+        public IEnumerable<IRazorEngineReference> Engines
         {
-            get { return _status; }
-            set { _status = this.RaiseAndSetIfChanged(m => m.Status, value); }
+            get { return _configService.AvailableEngines; }
         }
 
-        public string RazorCode
+        public IRazorEngineReference SelectedEngine
         {
-            get { return _razorCode; }
-            set { _razorCode = this.RaiseAndSetIfChanged(m => m.RazorCode, value); }
-        }
-
-        [ImportMany]
-        public ReactiveCollection<Lazy<IRazorEngine, IRazorEngineMetadata>> Engines
-        {
-            get { return _engines; }
-            set { _engines = this.RaiseAndSetIfChanged(m => m.Engines, value); }
-        }
-
-        public Lazy<IRazorEngine, IRazorEngineMetadata> SelectedEngine
-        {
-            get { return _selectedEngine; }
-            set { _selectedEngine = this.RaiseAndSetIfChanged(m => m.SelectedEngine, value); }
+            get { return _configService.ActiveEngine; }
+            set { _configService.ActiveEngine = value; }
         }
 
         public RazorLanguage SelectedLanguage
         {
-            get { return _selectedLanguage; }
-            set { _selectedLanguage = this.RaiseAndSetIfChanged(m => m.SelectedLanguage, value); }
-        }
-
-        public bool DesignTimeMode
-        {
-            get { return _designTimeMode; }
-            set { _designTimeMode = this.RaiseAndSetIfChanged(m => m.DesignTimeMode, value); }
-        }
-
-        public IEnumerable<Block> GeneratedTree
-        {
-            get { return _generatedTree; }
-            private set { _generatedTree = this.RaiseAndSetIfChanged(m => m.GeneratedTree, value); }
-        }
-
-        public string GeneratedCode
-        {
-            get { return _generatedCode; }
-            private set { _generatedCode = this.RaiseAndSetIfChanged(m => m.GeneratedCode, value); }
+            get { return _configService.ActiveLanguage; }
+            set { _configService.ActiveLanguage = value; }
         }
 
         public IEnumerable<RazorLanguage> Languages
         {
-            get { return _languages.Value; }
+            get { return _configService.AvailableLanguages; }
         }
 
-        public bool MultiEngine
+        public bool MultiEngine { get; private set; }
+        public bool SingleEngine { get; private set; }
+        
+        public MainViewModel() { }
+
+        [ImportingConstructor]
+        public MainViewModel(
+            IRazorConfigurationService configService, 
+            IDocumentService documentService)
         {
-            get { return _multiEngine.Value; }
-        }
+            _documentService = documentService;
+            _configService = configService;
 
-        public bool SingleEngine
-        {
-            get { return _singleEngine.Value; }
-        }
-
-        public MainViewModel()
-        {
-            _multiEngine = this.ObservableToProperty(
-                Engines.Changed.Select(_ => Engines.Count > 1),
-                vm => vm.MultiEngine);
-            _singleEngine = this.ObservableToProperty(
-                Engines.Changed.Select(_ => Engines.Count == 1),
-                vm => vm.SingleEngine);
-            _languages = this.ObservableToProperty(
-                this.ObservableForProperty(vm => vm.SelectedEngine)
-                    .Select(_ => SelectedEngine.Value.Languages),
-                vm => vm.Languages);
-            _languages.Subscribe(_ => EnsureLanguage());
-            Engines.Changed.Subscribe(_ => EnsureEngine());
-
-            Observable.Merge(
-                this.ObservableForProperty(vm => vm.DesignTimeMode).IgnoreValues(),
-                this.ObservableForProperty(vm => vm.SelectedEngine).IgnoreValues(),
-                this.ObservableForProperty(vm => vm.SelectedLanguage).IgnoreValues(),
-                this.ObservableForProperty(vm => vm.RazorCode).IgnoreValues())
-                .ObserveOn(RxApp.DeferredScheduler)
-                .Subscribe(_ => Regenerate());
-
-            this.PropertyChanged += MainViewModel_PropertyChanged;
-        }
-
-        void MainViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-        }
-
-        private void EnsureLanguage()
-        {
-            if (Languages != null && Languages.Any() && (SelectedLanguage == null || !Languages.Contains(SelectedLanguage)))
-            {
-                SelectedLanguage = Languages.FirstOrDefault();
-            }
-        }
-
-        private void EnsureEngine()
-        {
-            if (Engines != null && Engines.Any() && (SelectedEngine == null || !Engines.Contains(SelectedEngine)))
-            {
-                SelectedEngine = Engines.FirstOrDefault();
-            }
-        }
-
-        private void Regenerate()
-        {
-            if (SelectedEngine != null && SelectedLanguage != null && !String.IsNullOrEmpty(RazorCode))
-            {
-                Status = "Compiling...";
-                // Configure the host
-                IRazorEngine engine = SelectedEngine.Value;
-                ITemplateHost host = engine.CreateHost();
-                host.Language = SelectedLanguage;
-                host.DesignTimeMode = DesignTimeMode;
-
-                // Generate the template
-                GenerationResult result;
-                using (TextReader reader = new StringReader(RazorCode))
-                {
-                    result = SelectedEngine.Value.Generate(reader, host);
-                }
-                if (result != null)
-                {
-                    GeneratedCode = result.Code.GenerateString(SelectedLanguage.CreateCodeDomProvider());
-                    GeneratedTree = new[] { result.Document };
-                    Status = result.Success ? "Success" : "Errors during compilation";
-                    return;
-                }
-            }
-            GeneratedCode = String.Empty;
-            GeneratedTree = null;
+            MultiEngine = Engines.Count() > 1;
+            SingleEngine = Engines.Count() == 1;
         }
     }
 }

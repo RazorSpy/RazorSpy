@@ -64,12 +64,14 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive">
       <HintPath>..\packages\Rx_Experimental-Main.1.1.11111\lib\Net4\System.Reactive.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Windows.Threading">
       <HintPath>..\packages\Rx_Experimental-Xaml.1.1.11111\lib\Net4\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -87,11 +89,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CallerMemberName.cs" />
     <Compile Include="CodeDomExtensions.cs" />
+    <Compile Include="Modules\TranslatedSourceModuleModel.cs" />
     <Compile Include="ObservableExtensions.cs" />
+    <Compile Include="ObservePropertyChangesBase.cs" />
+    <Compile Include="Services\CompilationManager.cs" />
+    <Compile Include="Services\CompilationService.cs" />
+    <Compile Include="Services\ICompilationEngine.cs" />
+    <Compile Include="Services\ICompilationManager.cs" />
+    <Compile Include="Services\ICompilationService.cs" />
+    <Compile Include="Services\IDocumentService.cs" />
+    <Compile Include="IObservePropertyChanges.cs" />
+    <Compile Include="Services\IRazorCompiler.cs" />
+    <Compile Include="Services\IRazorConfigurationService.cs" />
+    <Compile Include="Services\IRazorDocument.cs" />
+    <Compile Include="Services\IRazorEngineReference.cs" />
+    <Compile Include="Services\RazorCompiler.cs" />
+    <Compile Include="Services\RazorConfigurationService.cs" />
+    <Compile Include="Services\RazorDocument.cs" />
+    <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Modules\SourceEditorModuleModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
+    <Compile Include="Modules\SourceEditorModule.xaml.cs">
+      <DependentUpon>SourceEditorModule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Xaml\EnumToResourceValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\SourceEditorModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -127,6 +155,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RazorSpy.ViewModel.MainViewModel.datasource" />
+    <None Include="Properties\DataSources\RazorSpy.ViewModel.SourceEditorModuleModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

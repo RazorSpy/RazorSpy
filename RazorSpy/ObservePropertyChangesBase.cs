@@ -6,6 +6,7 @@ using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using System.Text;
 using ReactiveUI;
+using System.Runtime.CompilerServices;
 
 namespace RazorSpy
 {

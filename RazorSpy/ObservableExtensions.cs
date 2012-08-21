@@ -29,6 +29,24 @@ namespace RazorSpy
             return self.Where(c => !String.Equals(c.PropertyName, propertyName, StringComparison.OrdinalIgnoreCase));
         }
 
+        public static IObservable<Tuple<T, T>> PairWithPrevious<T>(this IObservable<T> self)
+        {
+            return Observable.Create<Tuple<T, T>>(o =>
+            {
+                T prev = default(T);
+                bool havePrev = false;
+                return self.Subscribe(current =>
+                {
+                    if (havePrev)
+                    {
+                        o.OnNext(Tuple.Create(prev, current));
+                    }
+                    havePrev = true;
+                    prev = current;
+                }, ex => o.OnError(ex), () => o.OnCompleted());
+            });
+        }
+
         private static string GetMemberName<TModel, TRet>(Expression<Func<TModel, TRet>> property)
         {
             MemberExpression expr = property.Body as MemberExpression;

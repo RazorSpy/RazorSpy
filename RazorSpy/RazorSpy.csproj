@@ -41,6 +41,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions">
+      <HintPath>..\packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Reactive.Testing">
       <HintPath>..\packages\Rx_Experimental-Testing.1.1.11111\lib\Net4-Full\Microsoft.Reactive.Testing.dll</HintPath>
     </Reference>
@@ -75,6 +78,9 @@
       <HintPath>..\packages\Rx_Experimental-Xaml.1.1.11111\lib\Net4\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -92,8 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\DragWindowBehavior.cs" />
     <Compile Include="CodeDomExtensions.cs" />
-    <Compile Include="MetroWindowChrome.cs" />
+    <Compile Include="Commands\GlobalWindowCommands.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Modules\TranslatedSourceModuleModel.cs" />
     <Compile Include="ObservableExtensions.cs" />
     <Compile Include="ObservePropertyChangesBase.cs" />
@@ -113,6 +121,9 @@
     <Compile Include="Services\RazorDocument.cs" />
     <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Modules\SourceEditorModuleModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
@@ -143,6 +154,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

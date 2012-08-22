@@ -98,6 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\WindowIconBehavior.cs" />
     <Compile Include="Behaviors\WindowTitleBarBehavior.cs" />
     <Compile Include="CodeDomExtensions.cs" />
     <Compile Include="Commands\GlobalWindowCommands.cs" />

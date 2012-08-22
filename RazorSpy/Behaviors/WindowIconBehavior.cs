@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace RazorSpy.Behaviors
 {
-    public class WindowTitleBarBehavior : Behavior<UIElement>
+    public class WindowIconBehavior : Behavior<UIElement>
     {
         private DateTime _lastClickTime = DateTime.MinValue;
         protected override void OnAttached()
@@ -21,7 +21,6 @@ namespace RazorSpy.Behaviors
             base.OnAttached();
 
             AssociatedObject.MouseLeftButtonDown += OnMouseLeftButtonDown;
-            AssociatedObject.MouseRightButtonUp += OnMouseRightButtonUp;
         }
 
         protected override void OnDetaching()
@@ -29,45 +28,24 @@ namespace RazorSpy.Behaviors
             base.OnDetaching();
 
             AssociatedObject.MouseLeftButtonDown -= OnMouseLeftButtonDown;
-            AssociatedObject.MouseRightButtonUp -= OnMouseRightButtonUp;
-        }
-
-        protected virtual void OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Window win = Window.GetWindow(AssociatedObject);
-            SystemCommands.ShowSystemMenu(win, win.PointToScreen(e.GetPosition(win)));
-        }
-
-        protected virtual void OnDoubleClick()
-        {
-            Window win = Window.GetWindow(AssociatedObject);
-            if (win.WindowState == WindowState.Maximized)
-            {
-                win.WindowState = WindowState.Normal;
-            }
-            else if (win.WindowState == WindowState.Normal)
-            {
-                win.WindowState = WindowState.Maximized;
-            }
         }
 
         protected virtual void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Window win = Window.GetWindow(AssociatedObject);
             TimeSpan elapsed = DateTime.UtcNow - _lastClickTime;
             if (elapsed.TotalMilliseconds < 200.0)
             {
-                OnDoubleClick();
+                win.Close();
+                return;
             }
             else
             {
                 _lastClickTime = DateTime.UtcNow;
             }
 
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Window win = Window.GetWindow(AssociatedObject);
-                win.DragMove();
-            }
+            SystemCommands.ShowSystemMenu(win, AssociatedObject.PointToScreen(new Point(0, AssociatedObject.RenderSize.Height)));
+            e.Handled = true;
         }
     }
 }

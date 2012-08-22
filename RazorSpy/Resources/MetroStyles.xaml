@@ -3,7 +3,9 @@
                     xmlns:RazorSpy="clr-namespace:RazorSpy" 
                     xmlns:System="clr-namespace:System;assembly=mscorlib" 
                     xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-                    xmlns:cmd="clr-namespace:RazorSpy.Commands">
+                    xmlns:cmd="clr-namespace:RazorSpy.Commands"
+                    xmlns:rsb="clr-namespace:RazorSpy.Behaviors"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
     <Style x:Key="MetroWindowTitleStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="TextTrimming" Value="None"/>
@@ -60,43 +62,43 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Canvas Width="36" Height="28">
-                    <Path Stroke="White" StrokeThickness="1" Data="M13,10 13,18 23,18 23,10" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                    <Path Stroke="White" StrokeThickness="1" Data="M14,11 14,18 22,18 22,11" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
                                 <RotateTransform/>
-                                <TranslateTransform X="3" Y="-3"/>
+                                <TranslateTransform X="2" Y="-2"/>
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <Path Stroke="White" StrokeThickness="2" Data="M13,10 24,10" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                    <Path Stroke="White" StrokeThickness="2" Data="M14,11 23,11" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
                                 <RotateTransform/>
-                                <TranslateTransform X="3" Y="-3"/>
+                                <TranslateTransform X="2" Y="-2"/>
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <Path Stroke="White" StrokeThickness="1" Data="M13,10 13,18 23,18 23,10" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" >
+                    <Path Stroke="White" StrokeThickness="1" Data="M14,11 14,18 22,18 22,11" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" >
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
                                 <RotateTransform/>
-                                <TranslateTransform X="-3" Y="3"/>
+                                <TranslateTransform X="-2" Y="2"/>
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <Path Stroke="White" StrokeThickness="2" Data="M13,10 24,10" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" >
+                    <Path Stroke="White" StrokeThickness="2" Data="M14,11 23,11" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" >
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
                                 <RotateTransform/>
-                                <TranslateTransform X="-3" Y="3"/>
+                                <TranslateTransform X="-2" Y="2"/>
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
@@ -135,8 +137,10 @@
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}">
                         <DockPanel>
-                            <DockPanel DockPanel.Dock="Top">
-                                
+                            <DockPanel DockPanel.Dock="Top" Background="{TemplateBinding Background}">
+                                <i:Interaction.Behaviors>
+                                    <rsb:WindowTitleBarBehavior />
+                                </i:Interaction.Behaviors>
                                 <Border DockPanel.Dock="Left" x:Name="PART_Icon">
                                     <Path Data="M4.6990707,0.4137 L17.66547,0.4137 17.66547,13.386316 13.392045,17.661791 13.392045,7.8039141 3.6979529,17.490399 0.56020853,14.35115 10.217898,4.6891746 0.41374135,4.6891746 4.6990707,0.4137 z" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}" StrokeThickness="1" Stretch="None" HorizontalAlignment="Left" Margin="10" Height="18.26" Width="18.08" />
                                 </Border>

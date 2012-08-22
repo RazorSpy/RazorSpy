@@ -98,7 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\DragWindowBehavior.cs" />
+    <Compile Include="Behaviors\WindowTitleBarBehavior.cs" />
     <Compile Include="CodeDomExtensions.cs" />
     <Compile Include="Commands\GlobalWindowCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
@@ -121,9 +121,6 @@
     <Compile Include="Services\RazorDocument.cs" />
     <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Modules\SourceEditorModuleModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
@@ -154,10 +151,6 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

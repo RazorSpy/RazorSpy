@@ -136,6 +136,9 @@
                     <Border Background="{TemplateBinding Background}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}">
+                        <i:Interaction.Behaviors>
+                            <rsb:WindowBorderBehavior />
+                        </i:Interaction.Behaviors>
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top" Background="{TemplateBinding Background}">
                                 <i:Interaction.Behaviors>

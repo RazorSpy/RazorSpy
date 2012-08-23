@@ -20,6 +20,7 @@ namespace RazorSpy
     public class MetroWindow : Window
     {
         private Thickness? _oldThickness = null;
+
         static MetroWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MetroWindow), new FrameworkPropertyMetadata(typeof(MetroWindow)));

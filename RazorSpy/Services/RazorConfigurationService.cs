@@ -10,10 +10,10 @@ using RazorSpy.Contracts;
 namespace RazorSpy.Services
 {
     [Export(typeof(IRazorConfigurationService))]
-    public class RazorConfigurationService : ObservePropertyChangesBase<RazorConfigurationService>, IRazorConfigurationService
+    public class RazorConfigurationService : ObservePropertyChangesBase<RazorConfigurationService, IRazorConfigurationService>, IRazorConfigurationService
     {
         private IRazorCompiler _activeCompiler;
-        private IEnumerable<RazorLanguage> _availableLanguages;
+        private ICollection<RazorLanguage> _availableLanguages;
         private IRazorEngineReference _activeEngine;
         private RazorLanguage _activeLanguage;
 
@@ -22,8 +22,8 @@ namespace RazorSpy.Services
             get { return _activeCompiler ?? (_activeCompiler = CreateCompiler()); }
         }
 
-        public IEnumerable<IRazorEngineReference> AvailableEngines { get; private set; }
-        public IEnumerable<RazorLanguage> AvailableLanguages
+        public ICollection<IRazorEngineReference> AvailableEngines { get; private set; }
+        public ICollection<RazorLanguage> AvailableLanguages
         {
             get { return _availableLanguages; }
             private set { SetProperty(ref _availableLanguages, value); }
@@ -45,15 +45,16 @@ namespace RazorSpy.Services
         public RazorConfigurationService(
             [ImportMany] IEnumerable<Lazy<IRazorEngine, IRazorEngineMetadata>> engines)
         {
-            AvailableEngines = engines.Select(l => new RazorEngineReference(l));
-            SelectEngine();
-
+            AvailableEngines = engines.Select(l => new RazorEngineReference(l))
+                                      .ToList<IRazorEngineReference>();
             PropertyChanged.ForProperty(s => s.ActiveEngine)
-                .Subscribe(e => AvailableLanguages = e.Languages);
+                .Subscribe(e => AvailableLanguages = e.Languages.ToList());
             PropertyChanged.ForProperty(s => s.AvailableLanguages)
                 .Subscribe(SelectLanguage);
             PropertyChanged.ForAllPropertiesExcept(s => s.ActiveCompiler)
                 .Subscribe(_ => _activeCompiler = null);
+
+            SelectEngine();
         }
 
         public CodeDomProvider CreateCodeDomProvider()

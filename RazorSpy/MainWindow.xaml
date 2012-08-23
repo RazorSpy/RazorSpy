@@ -9,14 +9,14 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModel="clr-namespace:RazorSpy.ViewModel" mc:Ignorable="d" x:Class="RazorSpy.MainWindow"
-        Title="RazorSpy" DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}" Width="755" Height="504" Foreground="{DynamicResource MetroForegroundBrush}" Background="{DynamicResource MetroBackgroundBrush}" Style="{DynamicResource MetroWindowStyle}" BorderBrush="{DynamicResource MetroBlueBrush}" BorderThickness="1">
+        Title="RazorSpy" DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}" Width="995" Height="803" Foreground="{DynamicResource MetroForegroundBrush}" Background="{DynamicResource MetroBackgroundBrush}" Style="{DynamicResource MetroWindowStyle}" BorderBrush="{DynamicResource MetroBlueBrush}" BorderThickness="1" Icon="Resources/Icon32.png">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,5">
             <Label Content="Version:" />
-            <ComboBox Width="Auto" ItemsSource="{Binding Engines}" SelectedValue="{Binding SelectedEngine}" DisplayMemberPath="Metadata.Version" Visibility="{Binding MultiEngine, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center"/>
-            <Label Content="{Binding SelectedEngine.Metadata.Version}" Visibility="{Binding SingleEngine, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ComboBox Width="Auto" ItemsSource="{Binding Engines}" SelectedValue="{Binding SelectedEngine}" Visibility="{Binding MultiEngine, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorEngineReferenceTemplate}" />
+            <Label Content="{Binding SelectedEngine.Version}" Visibility="{Binding SingleEngine, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Label Content="Language:"/>
-            <ComboBox Width="Auto" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" DisplayMemberPath="Name" VerticalAlignment="Center" />
+            <ComboBox Width="Auto" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorLanguageTemplate}" />
             <CheckBox Content="Design Time Mode" IsChecked="{Binding DesignTimeMode}" Margin="5" />
         </StackPanel>
         <Grid>
@@ -38,7 +38,7 @@
                 <TextBox Grid.Row="1" VerticalAlignment="Stretch" Text="{Binding GeneratedCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="true" TextOptions.TextFormattingMode="Display" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
             </Grid>
             <GridSplitter Margin="-2.5,0,0,0" Width="4" HorizontalAlignment="Left" ResizeDirection="Columns" Grid.Column="1"/>
-            <GridSplitter Margin="0,-2.5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="1" Height="4" ResizeDirection="Rows"/>
+            <GridSplitter Margin="10,-2.5,10,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="1" Height="4" ResizeDirection="Rows"/>
             <Grid Margin="10" Grid.Row="1" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

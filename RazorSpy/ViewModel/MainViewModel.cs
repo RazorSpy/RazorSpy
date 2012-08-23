@@ -19,7 +19,7 @@ namespace RazorSpy.ViewModel
         private IDocumentService _documentService;
         private IRazorConfigurationService _configService;
 
-        public IEnumerable<IRazorEngineReference> Engines
+        public ICollection<IRazorEngineReference> Engines
         {
             get { return _configService.AvailableEngines; }
         }
@@ -36,7 +36,7 @@ namespace RazorSpy.ViewModel
             set { _configService.ActiveLanguage = value; }
         }
 
-        public IEnumerable<RazorLanguage> Languages
+        public ICollection<RazorLanguage> Languages
         {
             get { return _configService.AvailableLanguages; }
         }
@@ -56,6 +56,19 @@ namespace RazorSpy.ViewModel
 
             MultiEngine = Engines.Count() > 1;
             SingleEngine = Engines.Count() == 1;
+
+            _configService.PropertyChanged
+                          .ForProperty(c => c.AvailableLanguages)
+                          .Subscribe(_ => raisePropertyChanged("Languages"));
+            _configService.PropertyChanged
+                          .ForProperty(c => c.AvailableEngines)
+                          .Subscribe(_ => raisePropertyChanged("Engines"));
+            _configService.PropertyChanged
+                          .ForProperty(c => c.ActiveLanguage)
+                          .Subscribe(_ => raisePropertyChanged("SelectedLanguage"));
+            _configService.PropertyChanged
+                          .ForProperty(c => c.ActiveEngine)
+                          .Subscribe(_ => raisePropertyChanged("SelectedEngine"));
         }
     }
 }

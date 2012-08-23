@@ -8,11 +8,11 @@ using ReactiveUI;
 
 namespace RazorSpy.Services
 {
-    public interface IRazorConfigurationService : IObservePropertyChanges
+    public interface IRazorConfigurationService : IObservePropertyChanges<IRazorConfigurationService>
     {
         IRazorCompiler ActiveCompiler { get; }
-        IEnumerable<IRazorEngineReference> AvailableEngines { get; }
-        IEnumerable<RazorLanguage> AvailableLanguages { get; }
+        ICollection<IRazorEngineReference> AvailableEngines { get; }
+        ICollection<RazorLanguage> AvailableLanguages { get; }
 
         IRazorEngineReference ActiveEngine { get; set; }
         RazorLanguage ActiveLanguage { get; set; }

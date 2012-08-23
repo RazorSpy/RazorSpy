@@ -134,11 +134,11 @@
                                     <i:Interaction.Behaviors>
                                         <rsb:WindowTitleBarBehavior />
                                     </i:Interaction.Behaviors>
-                                    <Border DockPanel.Dock="Left" x:Name="PART_Icon" Background="{TemplateBinding Background}">
+                                    <Border DockPanel.Dock="Left" x:Name="PART_Icon" Background="{TemplateBinding Background}" Padding="7,0,0,0">
                                         <i:Interaction.Behaviors>
                                             <rsb:WindowIconBehavior />
                                         </i:Interaction.Behaviors>
-                                        <Path Data="M4.6990707,0.4137 L17.66547,0.4137 17.66547,13.386316 13.392045,17.661791 13.392045,7.8039141 3.6979529,17.490399 0.56020853,14.35115 10.217898,4.6891746 0.41374135,4.6891746 4.6990707,0.4137 z" Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}" StrokeThickness="1" Stretch="None" HorizontalAlignment="Left" Margin="10" Height="18.26" Width="18.08" />
+                                        <Image Source="{TemplateBinding Icon}" Width="24" Height="24" Margin="5" />
                                     </Border>
                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                                         <Button x:Name="MinButton" 

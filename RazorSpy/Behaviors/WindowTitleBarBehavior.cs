@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace RazorSpy.Behaviors
 {
-    public class WindowTitleBarBehavior : Behavior<UIElement>
+    public class WindowTitleBarBehavior : Behavior<FrameworkElement>
     {
         private DateTime _lastClickTime = DateTime.MinValue;
         protected override void OnAttached()

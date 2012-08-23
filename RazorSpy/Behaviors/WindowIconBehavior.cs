@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace RazorSpy.Behaviors
 {
-    public class WindowIconBehavior : Behavior<UIElement>
+    public class WindowIconBehavior : Behavior<FrameworkElement>
     {
         private DateTime _lastClickTime = DateTime.MinValue;
         protected override void OnAttached()
@@ -44,7 +44,7 @@ namespace RazorSpy.Behaviors
                 _lastClickTime = DateTime.UtcNow;
             }
 
-            SystemCommands.ShowSystemMenu(win, AssociatedObject.PointToScreen(new Point(0, AssociatedObject.RenderSize.Height)));
+            SystemCommands.ShowSystemMenu(win, AssociatedObject.PointToScreen(new Point(0, AssociatedObject.ActualHeight)));
             e.Handled = true;
         }
     }

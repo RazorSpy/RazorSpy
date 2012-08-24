@@ -21,7 +21,7 @@ namespace RazorSpy.Modules
             set { _documentService.ActiveDocument.Text = value; }
         }
 
-        public SourceEditorModuleModel() { }
+        internal SourceEditorModuleModel() { }
 
         [ImportingConstructor]
         public SourceEditorModuleModel(IDocumentService documentService)

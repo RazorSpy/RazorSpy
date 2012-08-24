@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                    xmlns:RazorSpy="clr-namespace:RazorSpy" 
-                    xmlns:System="clr-namespace:System;assembly=mscorlib" 
-                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:RazorSpy="clr-namespace:RazorSpy"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
     <SolidColorBrush x:Key="MetroForegroundBrush" Color="White"/>
     <SolidColorBrush x:Key="MetroBackgroundBrush" Color="#FF2D2D30"/>
     <SolidColorBrush x:Key="MetroBlueBrush" Color="#FF007ACC"/>

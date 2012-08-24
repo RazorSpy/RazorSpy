@@ -11,7 +11,7 @@ using ReactiveUI;
 namespace RazorSpy.Modules
 {
     [Export]
-    public class TranslatedSourceModuleModel : ReactiveObject
+    public class ParseTreeDisplayModuleModel : ReactiveObject
     {
         // Service references
         private ICompilationService _compilationService;
@@ -20,17 +20,17 @@ namespace RazorSpy.Modules
 
         // State
         private ICompilationManager _compilationManager;
-        private ObservableAsPropertyHelper<string> _generatedCode;
+        private ObservableAsPropertyHelper<IEnumerable<Block>> _tree;
 
-        public string GeneratedCode
+        public IEnumerable<Block> Tree
         {
-            get { return _generatedCode.Value; }
+            get { return _tree.Value; }
         }
 
-        internal TranslatedSourceModuleModel() { }
+        internal ParseTreeDisplayModuleModel() { }
 
         [ImportingConstructor]
-        public TranslatedSourceModuleModel(
+        public ParseTreeDisplayModuleModel(
             ICompilationService compilationService,
             IDocumentService documentService,
             IRazorConfigurationService configService)
@@ -41,14 +41,9 @@ namespace RazorSpy.Modules
 
             _compilationManager = _compilationService.CreateCompilationManager(_documentService.ActiveDocument);
 
-            _generatedCode = this.ObservableToProperty(
-                _compilationManager.GenerationResults.Select(GenerateCodeText),
-                vm => vm.GeneratedCode);
-        }
-
-        private string GenerateCodeText(GenerationResult result)
-        {
-            return result.Code.GenerateString(_configService.CreateCodeDomProvider());
+            _tree = this.ObservableToProperty(
+                _compilationManager.GenerationResults.Select(r => new [] { r.Document }),
+                vm => vm.Tree);
         }
     }
 }

@@ -25,14 +25,11 @@ namespace RazorSpy.Services
             _document = document;
             _config = config;
 
-            _generationResults = Observable.Create<GenerationResult>(observer =>
-            {
-                IDisposable token = _document.PropertyChanged
-                    .ForProperty(d => d.Text)
-                    .Select(Compile)
-                    .Subscribe(observer);
-                return () => token.Dispose();
-            });
+            _generationResults = 
+                Observable.Merge(
+                    _document.PropertyChanged.ForProperty(d => d.Text),
+                    _config.PropertyChanged.ForProperty(c => c.ActiveCompiler).Select(_ => _document.Text))
+                .Select(Compile);
         }
 
         private GenerationResult Compile(string razorCode)

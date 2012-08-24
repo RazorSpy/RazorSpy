@@ -105,6 +105,13 @@
     <Compile Include="Commands\GlobalWindowCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="MetroWindow.cs" />
+    <Compile Include="Modules\ParseTreeDisplayModule.xaml.cs">
+      <DependentUpon>ParseTreeDisplayModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ParseTreeDisplayModuleModel.cs" />
+    <Compile Include="Modules\TranslatedSourceModule.xaml.cs">
+      <DependentUpon>TranslatedSourceModule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TranslatedSourceModuleModel.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="ObservableExtensions.cs" />
@@ -144,7 +151,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\ParseTreeDisplayModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\SourceEditorModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\TranslatedSourceModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -41,6 +41,12 @@ namespace RazorSpy.ViewModel
             get { return _configService.AvailableLanguages; }
         }
 
+        public bool DesignTimeMode
+        {
+            get { return _configService.DesignTimeMode; }
+            set { _configService.DesignTimeMode = value; }
+        }
+
         public bool MultiEngine { get; private set; }
         public bool SingleEngine { get; private set; }
         
@@ -69,6 +75,9 @@ namespace RazorSpy.ViewModel
             _configService.PropertyChanged
                           .ForProperty(c => c.ActiveEngine)
                           .Subscribe(_ => raisePropertyChanged("SelectedEngine"));
+            _configService.PropertyChanged
+                          .ForProperty(c => c.DesignTimeMode)
+                          .Subscribe(_ => raisePropertyChanged("DesignTimeMode"));
         }
     }
 }

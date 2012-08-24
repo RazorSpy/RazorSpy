@@ -16,10 +16,12 @@ namespace RazorSpy.Services
         private ICollection<RazorLanguage> _availableLanguages;
         private IRazorEngineReference _activeEngine;
         private RazorLanguage _activeLanguage;
+        private bool _designTimeMode;
 
         public IRazorCompiler ActiveCompiler
         {
-            get { return _activeCompiler ?? (_activeCompiler = CreateCompiler()); }
+            get { return _activeCompiler; }
+            private set { SetProperty(ref _activeCompiler, value); }
         }
 
         public ICollection<IRazorEngineReference> AvailableEngines { get; private set; }
@@ -41,6 +43,12 @@ namespace RazorSpy.Services
             set { SetProperty(ref _activeLanguage, value); }
         }
 
+        public bool DesignTimeMode
+        {
+            get { return _designTimeMode; }
+            set { SetProperty(ref _designTimeMode, value); }
+        }
+
         [ImportingConstructor]
         public RazorConfigurationService(
             [ImportMany] IEnumerable<Lazy<IRazorEngine, IRazorEngineMetadata>> engines)
@@ -52,9 +60,10 @@ namespace RazorSpy.Services
             PropertyChanged.ForProperty(s => s.AvailableLanguages)
                 .Subscribe(SelectLanguage);
             PropertyChanged.ForAllPropertiesExcept(s => s.ActiveCompiler)
-                .Subscribe(_ => _activeCompiler = null);
+                .Subscribe(_ => RebuildCompiler());
 
             SelectEngine();
+            RebuildCompiler();
         }
 
         public CodeDomProvider CreateCodeDomProvider()
@@ -78,11 +87,12 @@ namespace RazorSpy.Services
             }
         }
 
-        private IRazorCompiler CreateCompiler()
+        private void RebuildCompiler()
         {
             ITemplateHost host = ActiveEngine.CreateHost();
-            // Todo: Configure the host
-            return new RazorCompiler(ActiveEngine, host);
+            host.Language = ActiveLanguage;
+            host.DesignTimeMode = DesignTimeMode;
+            ActiveCompiler = new RazorCompiler(ActiveEngine, host);
         }
     }
 }

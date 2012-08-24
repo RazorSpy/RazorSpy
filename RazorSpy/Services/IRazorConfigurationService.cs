@@ -16,6 +16,7 @@ namespace RazorSpy.Services
 
         IRazorEngineReference ActiveEngine { get; set; }
         RazorLanguage ActiveLanguage { get; set; }
+        bool DesignTimeMode { get; set; }
 
         CodeDomProvider CreateCodeDomProvider();
     }

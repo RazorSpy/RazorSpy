@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using RazorSpy.Contracts;
+using System.Text;
 using RazorSpy.Contracts.SyntaxTree;
 using RazorSpy.Services;
 using ReactiveUI;
+using RazorSpy.Contracts;
 
-namespace RazorSpy.ViewModel
+namespace RazorSpy.Modules
 {
     [Export]
-    public class MainViewModel : ReactiveObject
+    public class ConfigurationToolbarModuleModel : ReactiveObject
     {
-        // Services
-        private IDocumentService _documentService;
+        // Service references
         private IRazorConfigurationService _configService;
 
         public ICollection<IRazorEngineReference> Engines
@@ -49,15 +47,13 @@ namespace RazorSpy.ViewModel
 
         public bool MultiEngine { get; private set; }
         public bool SingleEngine { get; private set; }
-        
-        public MainViewModel() { }
+
+        internal ConfigurationToolbarModuleModel() { }
 
         [ImportingConstructor]
-        public MainViewModel(
-            IRazorConfigurationService configService, 
-            IDocumentService documentService)
+        public ConfigurationToolbarModuleModel(
+            IRazorConfigurationService configService)
         {
-            _documentService = documentService;
             _configService = configService;
 
             MultiEngine = Engines.Count() > 1;

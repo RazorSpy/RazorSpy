@@ -9,17 +9,18 @@
     <SolidColorBrush x:Key="MetroAlternateHighlightBrush" Color="#FF1F1F20" />
     <SolidColorBrush x:Key="MetroHighlightAccentBrush" Color="#FF0E5381" />
     <SolidColorBrush x:Key="MetroMenuBackgroundBrush" Color="#FF1B1B1C" />
-    <Style x:Key="MetroControlBaseStyle" TargetType="{x:Type Control}">
+    <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
-        <Setter Property="Background" Value="{StaticResource MetroBackgroundBrush}"/>
+    </Style>
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource MetroHighlightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
     </Style>
-    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource MetroControlBaseStyle}" />
-    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MetroControlBaseStyle}">
+    <Style TargetType="{x:Type TreeView}">
         <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}"/>
-    </Style>
-    <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource MetroControlBaseStyle}">
-        <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MetroHighlightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
     </Style>
     <SolidColorBrush x:Key="MetroControlBackgroundBrush" Color="#FF333337"/>
     <SolidColorBrush x:Key="MetroControlBorderBrush" Color="#FF6C6C6E"/>
@@ -126,8 +127,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MetroControlBaseStyle}">
+    <Style TargetType="{x:Type CheckBox}">
         <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -185,7 +187,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type GridSplitter}" BasedOn="{StaticResource MetroControlBaseStyle}">
+    <Style TargetType="{x:Type GridSplitter}">
         <Setter Property="Background" Value="{StaticResource MetroHighlightBrush}"/>
         <Setter Property="Template">
             <Setter.Value>

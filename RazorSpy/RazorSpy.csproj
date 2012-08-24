@@ -105,6 +105,10 @@
     <Compile Include="Commands\GlobalWindowCommands.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="MetroWindow.cs" />
+    <Compile Include="Modules\ConfigurationToolbarModule.xaml.cs">
+      <DependentUpon>ConfigurationToolbarModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ConfigurationToolbarModuleModel.cs" />
     <Compile Include="Modules\ParseTreeDisplayModule.xaml.cs">
       <DependentUpon>ParseTreeDisplayModule.xaml</DependentUpon>
     </Compile>
@@ -132,7 +136,6 @@
     <Compile Include="Services\RazorDocument.cs" />
     <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Modules\SourceEditorModuleModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
     <Compile Include="Modules\SourceEditorModule.xaml.cs">
@@ -151,6 +154,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\ConfigurationToolbarModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\ParseTreeDisplayModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -22,26 +22,8 @@ namespace RazorSpy
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-            "ViewModel", typeof(MainViewModel), typeof(MainWindow));
-
-        [Import]
-        public MainViewModel ViewModel
-        {
-            get { return (MainViewModel)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
-        }
-
         public MainWindow()
         {
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                ViewModel = new MainViewModel();
-            }
-            else
-            {
-                this.RegisterWithContainer();
-            }
             InitializeComponent();
         }
     }

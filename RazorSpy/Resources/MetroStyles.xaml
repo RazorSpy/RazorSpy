@@ -5,6 +5,9 @@
     <SolidColorBrush x:Key="MetroForegroundBrush" Color="White"/>
     <SolidColorBrush x:Key="MetroBackgroundBrush" Color="#FF2D2D30"/>
     <SolidColorBrush x:Key="MetroBlueBrush" Color="#FF007ACC"/>
+    <SolidColorBrush x:Key="MetroOrangeBrush" Color="#FFF09609"/>
+    <SolidColorBrush x:Key="MetroTealBrush" Color="#FF00ABA9"/>
+    <SolidColorBrush x:Key="MetroGreenBrush" Color="#FF339933"/>
     <SolidColorBrush x:Key="MetroHighlightBrush" Color="#FF3F3F46" />
     <SolidColorBrush x:Key="MetroAlternateHighlightBrush" Color="#FF1F1F20" />
     <SolidColorBrush x:Key="MetroHighlightAccentBrush" Color="#FF0E5381" />

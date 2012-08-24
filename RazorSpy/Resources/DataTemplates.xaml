@@ -74,7 +74,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <Border x:Name="border" ToolTip="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Background="#FF1BA1E2" BorderBrush="White" BorderThickness="2">
+                    <Border x:Name="border" ToolTip="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Background="#FF1BA1E2" BorderBrush="White" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition MinWidth="19" Width="Auto"/>
@@ -98,11 +98,7 @@
                             <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" TargetName="border">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="{DynamicResource MetroOrangeBrush}"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MetroGreenBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>

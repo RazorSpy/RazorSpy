@@ -135,6 +135,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Behaviors\WindowIconBehavior.cs" />
     <Compile Include="Behaviors\WindowTitleBarBehavior.cs" />
     <Compile Include="CodeDomExtensions.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="Modules\SourceEditorModuleModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
     <Compile Include="Modules\SourceEditorModule.xaml.cs">
       <DependentUpon>SourceEditorModule.xaml</DependentUpon>

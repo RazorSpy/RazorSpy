@@ -145,7 +145,7 @@
                 <TextBlock Text="]" />
             </StackPanel>
             <Border Grid.Row="1" Grid.Column="1" Background="White" Padding="2.5" Visibility="{Binding HasContent, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock TextWrapping="Wrap" Text="{Binding FormattedContent}" FontFamily="Consolas" Foreground="Black"/>
+                <TextBlock Text="{Binding FormattedContent}" FontFamily="Consolas" Foreground="Black"/>
             </Border>
         </Grid>
     </DataTemplate>

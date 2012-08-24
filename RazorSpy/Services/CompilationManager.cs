@@ -38,7 +38,7 @@ namespace RazorSpy.Services
             var compiler = _config.ActiveCompiler;
             
             // Generate the template
-            using (TextReader reader = new StringReader(razorCode))
+            using (TextReader reader = new StringReader(razorCode ?? String.Empty))
             {
                 return compiler.Generate(reader);
             }

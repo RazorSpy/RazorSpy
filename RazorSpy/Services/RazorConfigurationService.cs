@@ -83,7 +83,7 @@ namespace RazorSpy.Services
         {
             if (AvailableEngines != null && AvailableEngines.Any() && (ActiveEngine == null || !AvailableEngines.Contains(ActiveEngine)))
             {
-                ActiveEngine = AvailableEngines.FirstOrDefault();
+                ActiveEngine = AvailableEngines.OrderByDescending(e => e.Version).FirstOrDefault();
             }
         }
 

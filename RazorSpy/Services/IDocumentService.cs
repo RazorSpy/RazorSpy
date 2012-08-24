@@ -8,5 +8,7 @@ namespace RazorSpy.Services
     public interface IDocumentService
     {
         IRazorDocument ActiveDocument { get; }
+
+        void OpenDocument(string fileName);
     }
 }

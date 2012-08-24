@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using RazorSpy.Services;
 using ReactiveUI;
+using System.Windows.Input;
+using ReactiveUI.Xaml;
+using Microsoft.Win32;
+using System.IO;
 
 namespace RazorSpy.Modules
 {
@@ -21,6 +25,8 @@ namespace RazorSpy.Modules
             set { _documentService.ActiveDocument.Text = value; }
         }
 
+        public ReactiveCommand Open { get; set; }
+
         internal SourceEditorModuleModel() { }
 
         [ImportingConstructor]
@@ -28,6 +34,19 @@ namespace RazorSpy.Modules
         {
             _documentService = documentService;
             _documentService.ActiveDocument.PropertyChanged.ForProperty(d => d.Text).Subscribe(_ => this.RaisePropertyChanged(s => s.DocumentText));
+
+            Open = new ReactiveCommand();
+            Open.Subscribe(_ =>
+            {
+                OpenFileDialog ofd = new OpenFileDialog()
+                {
+                    Filter = "Razor Documents (*.cshtml, *.vbhtml)|*.cshtml;*.vbhtml|All Files (*.*)|*.*"
+                };
+                if (ofd.ShowDialog() == true)
+                {
+                    _documentService.OpenDocument(ofd.FileName);
+                }
+            });
         }
     }
 }

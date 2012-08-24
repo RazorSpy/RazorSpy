@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="OpenIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Geometry="M0,0.97200019L25.77986,0.97200019 25.77986,7.5628812 45.489002,7.5628812 44.736629,7.965861C40.825729,10.139042,38.142784,12.815178,36.302338,15.47459L36.25639,15.543001 0,15.543001 0,8.8689334 0,7.5628812z" 
+                                 Brush="White"/>
+                <GeometryDrawing Geometry="M66.957466,0L81.352005,14.471107 66.957466,27.220999 66.957466,20.413857C66.957466,20.413857,48.614201,15.393183,39.517807,22.616051L39.322521,22.779 64,22.779 64,52.046002 0,52.046002 0,22.779 36.663574,22.779 36.717793,22.595442C38.700813,16.375398,45.36581,6.8070728,66.957466,6.8070719z"
+                                 Brush="White" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

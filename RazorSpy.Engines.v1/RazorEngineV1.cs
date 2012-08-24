@@ -15,8 +15,8 @@ namespace RazorSpy.Engines.v1
     [ExportMetadata("Version", "1.0.0.0")]
     public class RazorEngineV1 : IRazorEngine
     {
-        internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#");
-        internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB");
+        internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#", "cshtml");
+        internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB", "vbhtml");
 
         public IEnumerable<RazorLanguage> Languages
         {

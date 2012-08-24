@@ -11,11 +11,13 @@ namespace RazorSpy.Contracts
     {
         public string Id { get; private set; }
         public string Name { get; private set; }
+        public string FileExtension { get; private set; }
         
-        public RazorLanguage(string id, string name)
+        public RazorLanguage(string id, string name, string fileExtension)
         {
             Id = id;
             Name = name;
+            FileExtension = fileExtension;
         }
 
         public CodeDomProvider CreateCodeDomProvider()

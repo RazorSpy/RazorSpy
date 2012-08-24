@@ -13,7 +13,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="Razor:" HorizontalAlignment="Stretch" Width="Auto" Margin="0,0,0,0"/>
-        <TextBox Margin="0" Grid.Row="1" AcceptsReturn="True" AcceptsTab="True" TextOptions.TextFormattingMode="Display" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Text="{Binding DocumentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <DockPanel>
+            <Label DockPanel.Dock="Left" Content="Razor:" HorizontalAlignment="Stretch" Width="Auto" Margin="0,0,0,0"/>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,1,0">
+                <Button Command="{Binding Open}">
+                    <Image Source="{DynamicResource OpenIcon}" Width="16" Height="16" />
+                </Button>
+            </StackPanel>
+        </DockPanel>
+        <TextBox Margin="0" Grid.Row="1" AcceptsReturn="True" AcceptsTab="True" TextOptions.TextFormattingMode="Display" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Text="{Binding DocumentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Consolas" />
     </Grid>
 </UserControl>

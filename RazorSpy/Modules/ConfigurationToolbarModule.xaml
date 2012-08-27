@@ -7,12 +7,19 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=Modules:ConfigurationToolbarModuleModel}"
              d:DesignHeight="26" d:DesignWidth="513" DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}">
-    <StackPanel Orientation="Horizontal">
-        <Label Content="Version:" />
-        <ComboBox Width="Auto" ItemsSource="{Binding Engines}" SelectedValue="{Binding SelectedEngine}" Visibility="{Binding MultiEngine, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorEngineReferenceTemplate}" />
-        <Label Content="{Binding SelectedEngine.Version}" Visibility="{Binding SingleEngine, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        <Label Content="Language:"/>
-        <ComboBox Width="Auto" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorLanguageTemplate}" />
-        <CheckBox Content="Design Time Mode" IsChecked="{Binding DesignTimeMode}" Margin="5" />
-    </StackPanel>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+            <Button Command="{Binding About}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="5" Width="Auto" Height="Auto" VerticalAlignment="Stretch">
+                About
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Version:" />
+            <ComboBox Width="Auto" ItemsSource="{Binding Engines}" SelectedValue="{Binding SelectedEngine}" Visibility="{Binding MultiEngine, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorEngineReferenceTemplate}" />
+            <Label Content="{Binding SelectedEngine.Version}" Visibility="{Binding SingleEngine, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Label Content="Language:"/>
+            <ComboBox Width="Auto" ItemsSource="{Binding Languages}" SelectedItem="{Binding SelectedLanguage}" VerticalAlignment="Center" ItemTemplate="{DynamicResource RazorLanguageTemplate}" />
+            <CheckBox Content="Design Time Mode" IsChecked="{Binding DesignTimeMode}" Margin="5" />
+        </StackPanel>
+    </DockPanel>
 </UserControl>

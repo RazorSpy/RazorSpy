@@ -48,6 +48,7 @@
     <SolidColorBrush x:Key="MetroControlBorderBrush" Color="#FF6C6C6E"/>
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#00000000" />
+        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{x:Null}" />
         <Setter Property="Width" Value="36" />
         <Setter Property="Height" Value="28" />

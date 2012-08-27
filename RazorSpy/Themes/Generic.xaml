@@ -124,7 +124,7 @@
         <Setter Property="AllowsTransparency" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Window}">
+                <ControlTemplate TargetType="{x:Type local:MetroWindow}">
                     <Border Background="{TemplateBinding Background}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}">
@@ -138,7 +138,7 @@
                                         <i:Interaction.Behaviors>
                                             <rsb:WindowIconBehavior />
                                         </i:Interaction.Behaviors>
-                                        <Image Source="{TemplateBinding Icon}" Width="24" Height="24" Margin="5" />
+                                        <Image Source="{TemplateBinding WindowIcon}" Width="24" Height="24" Margin="5" />
                                     </Border>
                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                                         <Button x:Name="MinButton" 

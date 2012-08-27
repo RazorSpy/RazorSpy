@@ -9,7 +9,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModel="clr-namespace:RazorSpy.ViewModel" mc:Ignorable="d" x:Class="RazorSpy.MainWindow"
-        Title="{Binding Version, StringFormat=RazorSpy \{0\}}" Width="1024" Height="768" Foreground="{DynamicResource MetroForegroundBrush}" Background="{DynamicResource MetroBackgroundBrush}" Style="{DynamicResource MetroWindowStyle}" BorderBrush="{DynamicResource MetroBlueBrush}" BorderThickness="1" Icon="Resources/Icon32.png">
+        Title="{Binding Version, StringFormat=RazorSpy \{0\}}" Width="1024" Height="768" Foreground="{DynamicResource MetroForegroundBrush}" Background="{DynamicResource MetroBackgroundBrush}" Style="{DynamicResource MetroWindowStyle}" BorderBrush="{DynamicResource MetroBlueBrush}" BorderThickness="1" Icon="/RazorSpy;component/Resources/Icon.ico" WindowIcon="Resources/Icon32.png">
     <RazorSpy:MetroWindow.DataContext>
         <vm:MainViewModel />
     </RazorSpy:MetroWindow.DataContext>

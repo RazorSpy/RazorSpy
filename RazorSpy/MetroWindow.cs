@@ -19,7 +19,16 @@ namespace RazorSpy
 {
     public class MetroWindow : Window
     {
+        public static readonly DependencyProperty WindowIconProperty = DependencyProperty.Register(
+            "WindowIcon", typeof(ImageSource), typeof(MetroWindow));
+
         private Thickness? _oldThickness = null;
+
+        public ImageSource WindowIcon
+        {
+            get { return (ImageSource)(GetValue(WindowIconProperty) ?? Icon); }
+            set { SetValue(WindowIconProperty, value); }
+        }
 
         static MetroWindow()
         {

@@ -232,7 +232,6 @@
     <None Include="Properties\DataSources\RazorSpy.ViewModel.MainViewModel.datasource" />
     <None Include="Properties\DataSources\RazorSpy.ViewModel.SourceEditorModuleModel.datasource" />
     <AppDesigner Include="Properties\" />
-    <None Include="RazorSpy_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RazorSpy.Contracts\RazorSpy.Contracts.csproj">

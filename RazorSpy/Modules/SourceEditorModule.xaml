@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <DockPanel>
+        <DockPanel Height="28">
             <Label DockPanel.Dock="Left" Content="Razor:" HorizontalAlignment="Stretch" Width="Auto" Margin="0,0,0,0"/>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,1,0">
                 <Button Command="{Binding Open}">

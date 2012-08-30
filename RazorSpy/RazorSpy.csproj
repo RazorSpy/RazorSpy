@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://razorspy.codeplex.com/releases/clickonce/</InstallUrl>
+    <InstallUrl>http://razorspy.codeplex.com/releases/clickonce/</InstallUrl>
     <SupportUrl>http://razorspy.codeplex.com</SupportUrl>
     <ErrorReportUrl>http://razorspy.codeplex.com</ErrorReportUrl>
     <TargetCulture>en-US</TargetCulture>
@@ -38,7 +38,7 @@
     <SuiteName>RazorSpy</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

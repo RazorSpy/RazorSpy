@@ -171,11 +171,15 @@
     <Compile Include="Services\SingleDocumentService.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="Modules\SourceEditorModuleModel.cs" />
+    <Compile Include="ViewModel\BlockViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SpanViewModel.cs" />
     <Compile Include="ViewModel\StatusType.cs" />
     <Compile Include="Modules\SourceEditorModule.xaml.cs">
       <DependentUpon>SourceEditorModule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\SyntaxTreeNodeViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBuilder.cs" />
     <Compile Include="Xaml\EnumToResourceValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -16,6 +16,10 @@ namespace RazorSpy.ViewModel
             {
                 return new BlockViewModel(b);
             }
+            else
+            {
+                return new SpanViewModel((Span)node);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:SyntaxTree="clr-namespace:RazorSpy.Contracts.SyntaxTree;assembly=RazorSpy.Contracts">
+                    xmlns:vm="clr-namespace:RazorSpy.ViewModel">
     <DataTemplate x:Key="RazorEngineReferenceTemplate">
         <TextBlock Text="{Binding Version}" />
     </DataTemplate>
@@ -71,6 +71,8 @@
         <Setter Property="Padding" Value="1,0,0,0"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -108,21 +110,21 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <HierarchicalDataTemplate DataType="{x:Type SyntaxTree:Block}" ItemsSource="{Binding Children}">
+    <HierarchicalDataTemplate DataType="{x:Type vm:BlockViewModel}" ItemsSource="{Binding Children}">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding Type}" />
             <TextBlock Text=" Block - (" />
-            <TextBlock Text="{Binding Start.Offset}" />
+            <TextBlock Text="{Binding Offset}" />
             <TextBlock Text=":" />
-            <TextBlock Text="{Binding Start.Column}" />
+            <TextBlock Text="{Binding Column}" />
             <TextBlock Text="," />
-            <TextBlock Text="{Binding Start.Line}" />
+            <TextBlock Text="{Binding Line}" />
             <TextBlock Text=") [" />
             <TextBlock Text="{Binding Length}" />
             <TextBlock Text="]" />
         </StackPanel>
     </HierarchicalDataTemplate>
-    <DataTemplate DataType="{x:Type SyntaxTree:Span}">
+    <DataTemplate DataType="{x:Type vm:SpanViewModel}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -135,11 +137,11 @@
             <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,4.04">
                 <TextBlock Text="{Binding Kind}" />
                 <TextBlock Text=" Span - (" />
-                <TextBlock Text="{Binding Start.Offset}" />
+                <TextBlock Text="{Binding Offset}" />
                 <TextBlock Text=":" />
-                <TextBlock Text="{Binding Start.Column}" />
+                <TextBlock Text="{Binding Column}" />
                 <TextBlock Text="," />
-                <TextBlock Text="{Binding Start.Line}" />
+                <TextBlock Text="{Binding Line}" />
                 <TextBlock Text=") [" />
                 <TextBlock Text="{Binding Length}" />
                 <TextBlock Text="]" />

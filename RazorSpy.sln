@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.v1", "RazorSpy.Engines.v1\RazorSpy.Engines.v1.csproj", "{61D14373-3D6E-4B58-8767-2A7F7326CA95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy", "RazorSpy\RazorSpy.csproj", "{87DB0FEC-705D-42CB-802B-CC7B59AB8BE7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0CB6162-D719-4F26-9525-6CCB3D3AD626} = {F0CB6162-D719-4F26-9525-6CCB3D3AD626}
+		{61D14373-3D6E-4B58-8767-2A7F7326CA95} = {61D14373-3D6E-4B58-8767-2A7F7326CA95}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

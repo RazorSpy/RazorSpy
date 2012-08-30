@@ -71,10 +71,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages"
-if not exist "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
-copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"
-copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\bin\$(ConfigurationName)\Packages\$(ProjectName)"</PostBuildEvent>
+    <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\Packages" mkdir "$(SolutionDir)\RazorSpy\Packages"
+if not exist "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

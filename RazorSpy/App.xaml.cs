@@ -23,6 +23,8 @@ namespace RazorSpy
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             base.OnStartup(e);
 
             RxApp.GetFieldNameForPropertyNameFunc = p => "_" + Char.ToLower(p[0]) + p.Substring(1);
@@ -39,6 +41,11 @@ namespace RazorSpy
             }
             container = new CompositionContainer(catalog);
             container.Compose(new CompositionBatch());
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Unhandled Exception: \n" + e.ExceptionObject.ToString());
         }
     }
 }

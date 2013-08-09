@@ -133,12 +133,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Behaviors\WindowIconBehavior.cs" />
-    <Compile Include="Behaviors\WindowTitleBarBehavior.cs" />
     <Compile Include="CodeDomExtensions.cs" />
-    <Compile Include="Commands\GlobalWindowCommands.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="MetroWindow.cs" />
     <Compile Include="Modules\ConfigurationToolbarModule.xaml.cs">
       <DependentUpon>ConfigurationToolbarModule.xaml</DependentUpon>
     </Compile>
@@ -151,7 +146,6 @@
       <DependentUpon>TranslatedSourceModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\TranslatedSourceModuleModel.cs" />
-    <Compile Include="NativeMethods.cs" />
     <Compile Include="ObservableExtensions.cs" />
     <Compile Include="ObservePropertyChangesBase.cs" />
     <Compile Include="Services\CompilationManager.cs" />
@@ -180,7 +174,6 @@
     </Compile>
     <Compile Include="ViewModel\SyntaxTreeNodeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBuilder.cs" />
-    <Compile Include="Xaml\EnumToResourceValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -217,10 +210,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\MetroStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -241,6 +230,10 @@
     <ProjectReference Include="..\RazorSpy.Contracts\RazorSpy.Contracts.csproj">
       <Project>{5f0cc878-487d-493e-9f7c-c9dd362212ed}</Project>
       <Name>RazorSpy.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VibrantStyles\VibrantStyles.csproj">
+      <Project>{981556ea-7298-42a1-bfd3-153f8d39d0d5}</Project>
+      <Name>VibrantStyles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

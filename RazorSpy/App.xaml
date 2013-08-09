@@ -6,9 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/MetroStyles.xaml" />
+                <ResourceDictionary Source="/VibrantStyles;component/AllStyles.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

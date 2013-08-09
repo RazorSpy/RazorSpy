@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
-namespace RazorSpy.Xaml
+namespace VibrantStyles.Xaml
 {
     [DefaultProperty("Mappings")]
     public class EnumToDictionaryValueConverter : DependencyObject, IValueConverter

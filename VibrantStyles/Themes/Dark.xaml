@@ -1,0 +1,185 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vst="clr-namespace:VibrantStyles"
+    xmlns:behave="clr-namespace:VibrantStyles.Behaviors"
+    xmlns:cmd="clr-namespace:VibrantStyles.Commands"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+
+    <Style x:Key="MetroWindowTitleStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="None" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="#FF759988" />
+    </Style>
+    <Style x:Key="MetroWindowTitleButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#00000000" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF3F3F41"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FF007ACC"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MetroMinButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MetroWindowTitleButtonStyle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="36" Height="28">
+                    <Path Fill="White" Stroke="White" StrokeThickness="2" Data="M13,16 23,16" SnapsToDevicePixels="True" />
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MetroMaxButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MetroWindowTitleButtonStyle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="36" Height="28">
+                    <Path Stroke="White" StrokeThickness="1" Data="M13,10 13,18 23,18 23,10" SnapsToDevicePixels="True" />
+                    <Path Stroke="White" StrokeThickness="2" Data="M13,10 24,10" SnapsToDevicePixels="True" />
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MetroRestoreButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MetroWindowTitleButtonStyle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="36" Height="28">
+                    <Path Stroke="White" StrokeThickness="1" Data="M14,11 14,18 22,18 22,11" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform X="2" Y="-2" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Stroke="White" StrokeThickness="2" Data="M14,11 23,11" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform X="2" Y="-2" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Stroke="White" StrokeThickness="1" Data="M14,11 14,18 22,18 22,11" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform X="-2" Y="2" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Stroke="White" StrokeThickness="2" Data="M14,11 23,11" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform X="-2" Y="2" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MetroCloseButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MetroWindowTitleButtonStyle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="36" Height="28">
+                    <Path Fill="White" Stroke="White" StrokeThickness="2" Data="M14,9 23,18 M14,18 23,9" SnapsToDevicePixels="True" />
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type vst:MetroWindow}">
+        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource MetroBackgroundBrush}" />
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type vst:MetroWindow}">
+                    <Border Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <DockPanel DockPanel.Dock="Top" Background="{TemplateBinding Background}">
+                                    <i:Interaction.Behaviors>
+                                        <behave:WindowTitleBarBehavior />
+                                    </i:Interaction.Behaviors>
+                                    <Border DockPanel.Dock="Left" x:Name="PART_Icon" Background="{TemplateBinding Background}" Padding="7,0,0,0">
+                                        <i:Interaction.Behaviors>
+                                            <behave:WindowIconBehavior />
+                                        </i:Interaction.Behaviors>
+                                        <Image Source="{TemplateBinding WindowIcon}" Width="24" Height="24" Margin="5" />
+                                    </Border>
+                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                        <Button x:Name="MinButton"
+                                            Style="{StaticResource MetroMinButtonStyle}"
+                                            Command="{x:Static cmd:GlobalWindowCommands.MinimizeWindow}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <Button x:Name="MaxButton"
+                                            Style="{StaticResource MetroMaxButtonStyle}"
+                                            Visibility="Collapsed"
+                                            Command="{x:Static cmd:GlobalWindowCommands.MaximizeWindow}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <Button x:Name="RestoreButton"
+                                            Style="{StaticResource MetroRestoreButtonStyle}"
+                                            Command="{x:Static cmd:GlobalWindowCommands.RestoreWindow}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <Button x:Name="CloseButton"
+                                            Style="{StaticResource MetroCloseButtonStyle}"
+                                            Command="{x:Static cmd:GlobalWindowCommands.CloseWindow}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </StackPanel>
+                                    <TextBlock x:Name="Title" Text="{TemplateBinding Title}" VerticalAlignment="Center" Style="{StaticResource MetroWindowTitleStyle}" />
+                                </DockPanel>
+                                <AdornerDecorator>
+                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                                </AdornerDecorator>
+                            </DockPanel>
+                            <ResizeGrip VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="MaxButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="MaxButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -12,52 +12,52 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Rectangle/>
+                    <Rectangle />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
+    <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z" />
     <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Width" Value="16"/>
-        <Setter Property="Height" Value="16"/>
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Background="Transparent" Height="16" Padding="5,5,5,5" Width="16">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver"/>
-                                <VisualState x:Name="Pressed"/>
-                                <VisualState x:Name="Disabled"/>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="CheckStates">
-                                <VisualState x:Name="Checked"/>
-                                <VisualState x:Name="Unchecked"/>
-                                <VisualState x:Name="Indeterminate"/>
+                                <VisualState x:Name="Checked" />
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Indeterminate" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Path x:Name="ExpandPath" Data="{StaticResource TreeArrow}" Fill="White" Stroke="White">
                             <Path.RenderTransform>
-                                <RotateTransform Angle="135" CenterY="3" CenterX="3"/>
+                                <RotateTransform Angle="135" CenterY="3" CenterX="3" />
                             </Path.RenderTransform>
                         </Path>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Stroke" TargetName="ExpandPath" Value="White"/>
-                            <Setter Property="Fill" TargetName="ExpandPath" Value="Red"/>
+                            <Setter Property="Stroke" TargetName="ExpandPath" Value="White" />
+                            <Setter Property="Fill" TargetName="ExpandPath" Value="Red" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="RenderTransform" TargetName="ExpandPath">
                                 <Setter.Value>
-                                    <RotateTransform Angle="180" CenterY="3" CenterX="3"/>
+                                    <RotateTransform Angle="180" CenterY="3" CenterX="3" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="Fill" TargetName="ExpandPath" Value="White"/>
-                            <Setter Property="Stroke" TargetName="ExpandPath" Value="White"/>
+                            <Setter Property="Fill" TargetName="ExpandPath" Value="White" />
+                            <Setter Property="Stroke" TargetName="ExpandPath" Value="White" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -65,12 +65,12 @@
         </Setter>
     </Style>
     <Style x:Key="ParseTreeItemStyle" TargetType="{x:Type TreeViewItem}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
-        <Setter Property="Padding" Value="1,0,0,0"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="Padding" Value="1,0,0,0" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}" />
         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
         <Setter Property="Template">
@@ -79,31 +79,31 @@
                     <Border x:Name="border" ToolTip="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Background="#FF1BA1E2" BorderBrush="White" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="19" Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MinWidth="19" Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ExpandCollapseToggleStyle}" Background="White"/>
-                            <ContentPresenter Grid.Column="1" x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
+                            <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ExpandCollapseToggleStyle}" Background="White" />
+                            <ContentPresenter Grid.Column="1" x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="false">
-                            <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="HasItems" Value="false">
-                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MetroGreenBrush}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MetroGreenBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -147,7 +147,7 @@
                 <TextBlock Text="]" />
             </StackPanel>
             <Border Grid.Row="1" Grid.Column="1" Background="White" Padding="2.5" Visibility="{Binding HasContent, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="{Binding FormattedContent}" FontFamily="Consolas" Foreground="Black"/>
+                <TextBlock Text="{Binding FormattedContent}" FontFamily="Consolas" Foreground="Black" />
             </Border>
         </Grid>
     </DataTemplate>

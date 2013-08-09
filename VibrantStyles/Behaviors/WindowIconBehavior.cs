@@ -1,8 +1,6 @@
-﻿using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,11 +9,12 @@ using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace RazorSpy.Behaviors
+namespace VibrantStyles.Behaviors
 {
     public class WindowIconBehavior : Behavior<FrameworkElement>
     {
         private DateTime _lastClickTime = DateTime.MinValue;
+
         protected override void OnAttached()
         {
             base.OnAttached();

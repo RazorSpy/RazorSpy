@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RazorSpy
+namespace VibrantStyles
 {
     internal static class NativeMethods
     {
@@ -19,6 +19,7 @@ namespace RazorSpy
             /// x coordinate of point.
             /// </summary>
             public int x;
+
             /// <summary>
             /// y coordinate of point.
             /// </summary>
@@ -50,19 +51,19 @@ namespace RazorSpy
         public class MONITORINFO
         {
             /// <summary>
-            /// </summary>            
+            /// </summary>
             public int cbSize = Marshal.SizeOf(typeof(MONITORINFO));
 
             /// <summary>
-            /// </summary>            
+            /// </summary>
             public RECT rcMonitor = new RECT();
 
             /// <summary>
-            /// </summary>            
+            /// </summary>
             public RECT rcWork = new RECT();
 
             /// <summary>
-            /// </summary>            
+            /// </summary>
             public int dwFlags = 0;
         }
 
@@ -72,10 +73,13 @@ namespace RazorSpy
         {
             /// <summary> Win32 </summary>
             public int left;
+
             /// <summary> Win32 </summary>
             public int top;
+
             /// <summary> Win32 </summary>
             public int right;
+
             /// <summary> Win32 </summary>
             public int bottom;
 
@@ -87,6 +91,7 @@ namespace RazorSpy
             {
                 get { return Math.Abs(right - left); }  // Abs needed for BIDI OS
             }
+
             /// <summary> Win32 </summary>
             public int Height
             {
@@ -101,7 +106,6 @@ namespace RazorSpy
                 this.right = right;
                 this.bottom = bottom;
             }
-
 
             /// <summary> Win32 </summary>
             public RECT(RECT rcSrc)
@@ -121,6 +125,7 @@ namespace RazorSpy
                     return left >= right || top >= bottom;
                 }
             }
+
             /// <summary> Return a user friendly representation of this struct </summary>
             public override string ToString()
             {
@@ -141,7 +146,6 @@ namespace RazorSpy
                 return left.GetHashCode() + top.GetHashCode() + right.GetHashCode() + bottom.GetHashCode();
             }
 
-
             /// <summary> Determine if 2 RECT are equal (deep compare)</summary>
             public static bool operator ==(RECT rect1, RECT rect2)
             {
@@ -153,14 +157,13 @@ namespace RazorSpy
             {
                 return !(rect1 == rect2);
             }
-
         }
 
         [DllImport("user32")]
         internal static extern bool GetMonitorInfo(IntPtr hMonitor, MONITORINFO lpmi);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [DllImport("User32")]
         internal static extern IntPtr MonitorFromWindow(IntPtr handle, int flags);

@@ -231,9 +231,9 @@
       <Project>{5f0cc878-487d-493e-9f7c-c9dd362212ed}</Project>
       <Name>RazorSpy.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VibrantStyles\VibrantStyles.csproj">
+    <ProjectReference Include="..\RazorSpy.Styles\RazorSpy.Styles.csproj">
       <Project>{981556ea-7298-42a1-bfd3-153f8d39d0d5}</Project>
-      <Name>VibrantStyles</Name>
+      <Name>RazorSpy.Styles</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

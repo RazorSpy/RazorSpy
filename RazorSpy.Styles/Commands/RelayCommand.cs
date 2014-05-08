@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace VibrantStyles.Commands
+namespace RazorSpy.Styles.Commands
 {
     // Simple relay command for when ReactiveCommand is overkill
     public class RelayCommand : ICommand

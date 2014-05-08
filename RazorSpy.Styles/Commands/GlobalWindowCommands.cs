@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace VibrantStyles.Commands
+namespace RazorSpy.Styles.Commands
 {
     public static class GlobalWindowCommands
     {

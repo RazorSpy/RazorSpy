@@ -1,29 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:RazorSpy="clr-namespace:RazorSpy"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
-    <SolidColorBrush x:Key="MetroForegroundBrush" Color="White"/>
-    <SolidColorBrush x:Key="MetroBackgroundBrush" Color="#FF2D2D30"/>
-    <SolidColorBrush x:Key="MetroBlueBrush" Color="#FF007ACC"/>
-    <SolidColorBrush x:Key="MetroOrangeBrush" Color="#FFF09609"/>
-    <SolidColorBrush x:Key="MetroTealBrush" Color="#FF00ABA9"/>
-    <SolidColorBrush x:Key="MetroGreenBrush" Color="#FF339933"/>
-    <SolidColorBrush x:Key="MetroHighlightBrush" Color="#FF3F3F46" />
-    <SolidColorBrush x:Key="MetroAlternateHighlightBrush" Color="#FF1F1F20" />
-    <SolidColorBrush x:Key="MetroHighlightAccentBrush" Color="#FF0E5381" />
-    <SolidColorBrush x:Key="MetroMenuBackgroundBrush" Color="#FF1B1B1C" />
+    <SolidColorBrush x:Key="RazorSpyForegroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="RazorSpyBackgroundBrush" Color="#FF2D2D30"/>
+    <SolidColorBrush x:Key="RazorSpyBlueBrush" Color="#FF007ACC"/>
+    <SolidColorBrush x:Key="RazorSpyOrangeBrush" Color="#FFF09609"/>
+    <SolidColorBrush x:Key="RazorSpyTealBrush" Color="#FF00ABA9"/>
+    <SolidColorBrush x:Key="RazorSpyGreenBrush" Color="#FF339933"/>
+    <SolidColorBrush x:Key="RazorSpyHighlightBrush" Color="#FF3F3F46" />
+    <SolidColorBrush x:Key="RazorSpyAlternateHighlightBrush" Color="#FF1F1F20" />
+    <SolidColorBrush x:Key="RazorSpyHighlightAccentBrush" Color="#FF0E5381" />
+    <SolidColorBrush x:Key="RazorSpyMenuBackgroundBrush" Color="#FF1B1B1C" />
     <Style TargetType="{x:Type Label}">
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}"/>
     </Style>
     <Style TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource MetroHighlightBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource RazorSpyMenuBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RazorSpyHighlightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}"/>
     </Style>
     <Style TargetType="{x:Type TreeView}">
-        <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource MetroHighlightBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource RazorSpyMenuBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RazorSpyHighlightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeView}">
@@ -37,18 +36,18 @@
                             <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource MetroForegroundBrush}" />
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource RazorSpyForegroundBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="MetroControlBackgroundBrush" Color="#FF333337"/>
-    <SolidColorBrush x:Key="MetroControlBorderBrush" Color="#FF6C6C6E"/>
+    <SolidColorBrush x:Key="RazorSpyControlBackgroundBrush" Color="#FF333337"/>
+    <SolidColorBrush x:Key="RazorSpyControlBorderBrush" Color="#FF6C6C6E"/>
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#00000000" />
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{x:Null}" />
         <Setter Property="Width" Value="36" />
         <Setter Property="Height" Value="28" />
@@ -87,9 +86,9 @@
                 </Style>
             </Setter.Value>
         </Setter>
-        <Setter Property="Background" Value="{StaticResource MetroControlBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource MetroControlBorderBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource RazorSpyControlBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource RazorSpyControlBorderBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -110,7 +109,7 @@
                                 <ScrollViewer x:Name="DropDownScrollViewer">
                                     <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                            <Rectangle x:Name="OpaqueRect" Fill="{StaticResource MetroMenuBackgroundBrush}" Height="{Binding ActualHeight, ElementName=DropDownBorder}" Width="{Binding ActualWidth, ElementName=DropDownBorder}"/>
+                                            <Rectangle x:Name="OpaqueRect" Fill="{StaticResource RazorSpyMenuBackgroundBrush}" Height="{Binding ActualHeight, ElementName=DropDownBorder}" Width="{Binding ActualWidth, ElementName=DropDownBorder}"/>
                                         </Canvas>
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                     </Grid>
@@ -129,19 +128,19 @@
                                             <ControlTemplate TargetType="{x:Type ToggleButton}">
                                                 <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True" Background="{TemplateBinding Background}">
                                                     <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="2,0,0,0" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="True" Width="14">
-                                                        <Path x:Name="Arrow" Data="F1M0,0L2.667,2.66665 5.3334,0 0,0z" Fill="{DynamicResource MetroControlBorderBrush}" HorizontalAlignment="Center" Margin="0,0,1,0" VerticalAlignment="Center" />
+                                                        <Path x:Name="Arrow" Data="F1M0,0L2.667,2.66665 5.3334,0 0,0z" Fill="{DynamicResource RazorSpyControlBorderBrush}" HorizontalAlignment="Center" Margin="0,0,1,0" VerticalAlignment="Center" />
                                                     </Border>
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Fill" TargetName="Arrow" Value="{StaticResource MetroHighlightAccentBrush}"/>
-                                                        <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource MetroAlternateHighlightBrush}"/>
-                                                        <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource MetroHighlightAccentBrush}"/>
-                                                        <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MetroHighlightBrush}" />
+                                                        <Setter Property="Fill" TargetName="Arrow" Value="{StaticResource RazorSpyHighlightAccentBrush}"/>
+                                                        <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource RazorSpyAlternateHighlightBrush}"/>
+                                                        <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource RazorSpyHighlightAccentBrush}"/>
+                                                        <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource RazorSpyHighlightBrush}" />
                                                     </Trigger>
                                                     <Trigger Property="IsChecked" Value="True">
                                                         <Setter Property="Fill" TargetName="Arrow" Value="White"/>
-                                                        <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource MetroHighlightAccentBrush}"/>
+                                                        <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource RazorSpyHighlightAccentBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="Fill" TargetName="Arrow" Value="#FFBFBFBF"/>
@@ -176,8 +175,8 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="Background" Value="{StaticResource MetroMenuBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource MetroForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource RazorSpyMenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource RazorSpyForegroundBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -212,15 +211,15 @@
                             <Setter Property="Padding" Value="4,-1,0,0"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource MetroHighlightAccentBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource RazorSpyHighlightAccentBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource MetroHighlightBrush}"/>
+                            <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource RazorSpyHighlightBrush}"/>
                             <Setter Property="Fill" TargetName="optionMark" Value="#FF707070"/>
                             <Setter Property="Fill" TargetName="indeterminateMark" Value="#FF707070"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource MetroHighlightAccentBrush}"/>
+                            <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource RazorSpyHighlightAccentBrush}"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
@@ -236,14 +235,14 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type GridSplitter}">
-        <Setter Property="Background" Value="{StaticResource MetroHighlightBrush}"/>
+        <Setter Property="Background" Value="{StaticResource RazorSpyHighlightBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GridSplitter}">
                     <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MetroHighlightAccentBrush}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource RazorSpyHighlightAccentBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

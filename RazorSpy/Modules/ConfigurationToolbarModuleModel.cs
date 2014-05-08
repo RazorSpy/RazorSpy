@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Reflection;
 using System.Reactive.Linq;
 using System.Text;
 using RazorSpy.Contracts.SyntaxTree;
@@ -79,11 +80,13 @@ namespace RazorSpy.Modules
                           .ForProperty(c => c.DesignTimeMode)
                           .Subscribe(_ => raisePropertyChanged("DesignTimeMode"));
 
+            string copyright = typeof(ConfigurationToolbarModule).Assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
+
             About = new ReactiveCommand();
             About.Subscribe(_ =>
             {
-                MessageBox.Show("RazorSpy is copyright Andrew Nurse 2012.\r\n" +
-                    "Licensed under the Apache Public License (see http://razorspy.codeplex.com/license)\r\n" +
+                MessageBox.Show("RazorSpy is " + copyright + ".\r\n" +
+                    "Licensed under the Apache Public License\r\n" +
                     "\r\n" +
                     "This project uses the following icons from The Noun Project (http://thenounproject.com)\r\n" +
                     " * \"Zoom In\", by Octopod from The Noun Project (http://thenounproject.com/noun/zoom/#icon-No1669)\r\n" +

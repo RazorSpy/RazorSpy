@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VibrantStyles
+namespace RazorSpy.Styles
 {
     internal static class NativeMethods
     {

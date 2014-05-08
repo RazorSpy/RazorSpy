@@ -12,7 +12,7 @@ using System.Windows;
 
 [assembly: AssemblyCompany("Andrew Nurse")]
 [assembly: AssemblyProduct("RazorSpy")]
-[assembly: AssemblyCopyright("Copyright © Andrew Nurse 2012")]
+[assembly: AssemblyCopyright("Copyright © RazorSpy Contributors 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

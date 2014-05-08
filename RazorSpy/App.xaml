@@ -6,7 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/VibrantStyles;component/AllStyles.xaml" />
+                <ResourceDictionary Source="/RazorSpy.Styles;component/AllStyles.xaml" />
+                <ResourceDictionary Source="/RazorSpy.Styles;component/Themes/Dark.xaml" />
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

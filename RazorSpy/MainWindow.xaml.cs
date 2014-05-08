@@ -13,15 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RazorSpy.Styles;
 using RazorSpy.ViewModel;
-using VibrantStyles;
 
 namespace RazorSpy
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : RazorSpyWindow
     {
         public MainWindow()
         {

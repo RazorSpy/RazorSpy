@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Media;
 
-namespace VibrantStyles.Behaviors
+namespace RazorSpy.Styles.Behaviors
 {
     public class WindowTitleBarBehavior : Behavior<FrameworkElement>
     {

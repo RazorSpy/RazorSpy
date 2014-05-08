@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.v2", "RazorSpy.Engines.v2\RazorSpy.Engines.v2.csproj", "{F0CB6162-D719-4F26-9525-6CCB3D3AD626}"
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy", "RazorSpy\RazorS
 		{61D14373-3D6E-4B58-8767-2A7F7326CA95} = {61D14373-3D6E-4B58-8767-2A7F7326CA95}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibrantStyles", "VibrantStyles\VibrantStyles.csproj", "{981556EA-7298-42A1-BFD3-153F8D39D0D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Styles", "RazorSpy.Styles\RazorSpy.Styles.csproj", "{981556EA-7298-42A1-BFD3-153F8D39D0D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

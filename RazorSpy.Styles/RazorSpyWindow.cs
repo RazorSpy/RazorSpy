@@ -15,12 +15,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VibrantStyles
+namespace RazorSpy.Styles
 {
-    public class MetroWindow : Window
+    public class RazorSpyWindow : Window
     {
         public static readonly DependencyProperty WindowIconProperty = DependencyProperty.Register(
-            "WindowIcon", typeof(ImageSource), typeof(MetroWindow));
+            "WindowIcon", typeof(ImageSource), typeof(RazorSpyWindow));
 
         private Thickness? _oldThickness = null;
 
@@ -30,9 +30,9 @@ namespace VibrantStyles
             set { SetValue(WindowIconProperty, value); }
         }
 
-        static MetroWindow()
+        static RazorSpyWindow()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(MetroWindow), new FrameworkPropertyMetadata(typeof(MetroWindow)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(RazorSpyWindow), new FrameworkPropertyMetadata(typeof(RazorSpyWindow)));
         }
 
         protected override void OnSourceInitialized(EventArgs e)

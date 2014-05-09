@@ -1,10 +1,7 @@
-﻿using ReactiveUI;
-using System;
+﻿using System;
 using System.Reactive.Linq;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RazorSpy.Contracts.SyntaxTree;
+using ReactiveUI;
 
 namespace RazorSpy.ViewModel
 {

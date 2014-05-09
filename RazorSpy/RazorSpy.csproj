@@ -279,9 +279,15 @@
     <Content Include="Packages\RazorSpy.Engines.v2\System.Web.Razor.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Packages\RazorSpy.Engines.v3\RazorSpy.Engines.v3.dll" />
-    <Content Include="Packages\RazorSpy.Engines.v3\RazorSpy.Engines.v3.pdb" />
-    <Content Include="Packages\RazorSpy.Engines.v3\System.Web.Razor.dll" />
+    <Content Include="Packages\RazorSpy.Engines.v3\RazorSpy.Engines.v3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Packages\RazorSpy.Engines.v3\RazorSpy.Engines.v3.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Packages\RazorSpy.Engines.v3\System.Web.Razor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

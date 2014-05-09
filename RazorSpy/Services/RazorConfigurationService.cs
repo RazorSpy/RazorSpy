@@ -73,9 +73,17 @@ namespace RazorSpy.Services
 
         private void SelectLanguage(IEnumerable<RazorLanguage> languages)
         {
-            if (languages != null && languages.Any() && (ActiveLanguage == null || !languages.Contains(ActiveLanguage)))
+            if (languages != null && languages.Any())
             {
-                ActiveLanguage = languages.FirstOrDefault();
+                if (ActiveLanguage == null || !languages.Select(l => l.Name)
+                                                        .Any(name => name != ActiveLanguage.Name))
+                {
+                    ActiveLanguage = languages.FirstOrDefault();
+                }
+                else
+                {
+                    ActiveLanguage = languages.FirstOrDefault(language => language.Name == ActiveLanguage.Name);
+                }
             }
         }
 

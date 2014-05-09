@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RazorSpy.Contracts.SyntaxTree;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.CodeDom;
+using RazorSpy.Contracts.SyntaxTree;
 
 namespace RazorSpy.Contracts
 {

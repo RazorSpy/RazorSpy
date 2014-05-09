@@ -35,9 +35,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    <Reference Include="..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll">
+      <Name>System.Web.Razor (1.0.0)</Name>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,10 +66,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\Packages" mkdir "$(SolutionDir)\RazorSpy\Packages"
-if not exist "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
-copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
-copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"</PostBuildEvent>
+    <PostBuildEvent>
+      if not exist "$(SolutionDir)\RazorSpy\Packages" mkdir "$(SolutionDir)\RazorSpy\Packages"
+      if not exist "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+      copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+      copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

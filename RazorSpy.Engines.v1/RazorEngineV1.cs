@@ -18,6 +18,9 @@ namespace RazorSpy.Engines.v1
         internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#", "cshtml");
         internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB", "vbhtml");
 
+        [Import]
+        private ICodeDomCodeGenerator CodeGenerator { get; set; }
+
         public IEnumerable<RazorLanguage> Languages
         {
             get
@@ -40,7 +43,7 @@ namespace RazorSpy.Engines.v1
             {
                 Success = result.Success,
                 Document = result.Document.ToRazorSpy(),
-                Code = result.GeneratedCode
+                Code = CodeGenerator.GenerateCode(host, result.GeneratedCode),
             };
         }
 

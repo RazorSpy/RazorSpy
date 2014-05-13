@@ -133,7 +133,6 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CodeDomExtensions.cs" />
     <Compile Include="Modules\ConfigurationToolbarModule.xaml.cs">
       <DependentUpon>ConfigurationToolbarModule.xaml</DependentUpon>
     </Compile>
@@ -148,6 +147,7 @@
     <Compile Include="Modules\TranslatedSourceModuleModel.cs" />
     <Compile Include="ObservableExtensions.cs" />
     <Compile Include="ObservePropertyChangesBase.cs" />
+    <Compile Include="Services\CodeDomCodeGenerator.cs" />
     <Compile Include="Services\CompilationManager.cs" />
     <Compile Include="Services\CompilationService.cs" />
     <Compile Include="Services\ICompilationEngine.cs" />
@@ -286,6 +286,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Packages\RazorSpy.Engines.v3\System.Web.Razor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Packages\RazorSpy.Engines.vNext\RazorSpy.Engines.vNext.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Packages\RazorSpy.Engines.vNext\RazorSpy.Engines.vNext.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Packages\RazorSpy.Engines.vNext\Microsoft.AspNet.Razor.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

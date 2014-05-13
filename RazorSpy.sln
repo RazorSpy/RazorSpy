@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30416.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.v2", "RazorSpy.Engines.v2\RazorSpy.Engines.v2.csproj", "{F0CB6162-D719-4F26-9525-6CCB3D3AD626}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Styles", "RazorSpy.Styles\RazorSpy.Styles.csproj", "{981556EA-7298-42A1-BFD3-153F8D39D0D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.v3", "RazorSpy.Engines.v3\RazorSpy.Engines.v3.csproj", "{BC74C931-195F-4C95-8098-A55CB438E4D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorSpy.Engines.vNext", "RazorSpy.Engines.vNext\RazorSpy.Engines.vNext.csproj", "{F03436ED-2F9C-433B-8689-5AED0C0907F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,16 @@ Global
 		{BC74C931-195F-4C95-8098-A55CB438E4D0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BC74C931-195F-4C95-8098-A55CB438E4D0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BC74C931-195F-4C95-8098-A55CB438E4D0}.Release|x86.ActiveCfg = Release|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F03436ED-2F9C-433B-8689-5AED0C0907F3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,33 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Web.Razor;
 using RazorSpy.Contracts;
 using RazorSpy.Contracts.SyntaxTree;
+using Microsoft.AspNet.Razor;
 
-namespace RazorSpy.Engines.v3
+namespace RazorSpy.Engines.vNext
 {
     [Export(typeof(IRazorEngine))]
-    [ExportMetadata("Version", "3.0.0.0")]
-    public class RazorEngineV3 : IRazorEngine
+    [ExportMetadata("Version", "vNext")]
+    public class RazorEngineVNext : IRazorEngine
     {
         internal static readonly RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#", "cshtml");
-        internal readonly static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB", "vbhtml");
-
-        [Import]
-        private ICodeDomCodeGenerator CodeGenerator { get; set; }
 
         public IEnumerable<RazorLanguage> Languages
         {
-            get {
-                yield return CSharpLanguage;
-                yield return VBLanguage;
+            get
+            {
+                return new[] { CSharpLanguage };
             }
         }
 
         public ITemplateHost CreateHost()
         {
-            return new TemplateHostV3();
+            return new TemplateHostVNext();
         }
 
         public GenerationResult Generate(TextReader document, ITemplateHost host)
@@ -38,7 +34,7 @@ namespace RazorSpy.Engines.v3
             {
                 Success = result.Success,
                 Document = result.Document.ToRazorSpy(),
-                Code = CodeGenerator.GenerateCode(host, result.GeneratedCode),
+                Code = result.GeneratedCode,
             };
         }
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Web.Razor;
@@ -15,6 +13,9 @@ namespace RazorSpy.Engines.v2
     {
         internal static RazorLanguage CSharpLanguage = new RazorLanguage("csharp", "C#", "cshtml");
         internal static RazorLanguage VBLanguage = new RazorLanguage("vb", "VB", "vbhtml");
+
+        [Import]
+        private ICodeDomCodeGenerator CodeGenerator { get; set; }
 
         public IEnumerable<RazorLanguage> Languages
         {
@@ -37,7 +38,7 @@ namespace RazorSpy.Engines.v2
             {
                 Success = result.Success,
                 Document = result.Document.ToRazorSpy(),
-                Code = result.GeneratedCode
+                Code = CodeGenerator.GenerateCode(host, result.GeneratedCode),
             };
         }
 

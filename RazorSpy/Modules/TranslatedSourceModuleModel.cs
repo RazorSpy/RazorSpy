@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using RazorSpy.Contracts.SyntaxTree;
 using RazorSpy.Services;
 using ReactiveUI;
 
@@ -42,13 +38,8 @@ namespace RazorSpy.Modules
             _compilationManager = _compilationService.CreateCompilationManager(_documentService.ActiveDocument);
 
             _generatedCode = this.ObservableToProperty(
-                _compilationManager.GenerationResults.Select(GenerateCodeText),
+                _compilationManager.GenerationResults.Select(r => r.Code),
                 vm => vm.GeneratedCode);
-        }
-
-        private string GenerateCodeText(GenerationResult result)
-        {
-            return result.Code.GenerateString(_configService.CreateCodeDomProvider());
         }
     }
 }

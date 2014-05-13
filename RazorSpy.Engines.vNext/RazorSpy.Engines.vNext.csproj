@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F0CC878-487D-493E-9F7C-C9DD362212ED}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F03436ED-2F9C-433B-8689-5AED0C0907F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RazorSpy.Contracts</RootNamespace>
-    <AssemblyName>RazorSpy.Contracts</AssemblyName>
+    <RootNamespace>RazorSpy.Engines.vNext</RootNamespace>
+    <AssemblyName>RazorSpy.Engines.vNext</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +36,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.0.1-alpha-build-0193\lib\net45\Microsoft.AspNet.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,21 +49,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="ICodeDomCodeGenerator.cs" />
-    <Compile Include="IRazorEngine.cs" />
+    <Compile Include="ConversionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RazorLanguage.cs" />
-    <Compile Include="SyntaxTree\Block.cs" />
-    <Compile Include="SyntaxTree\CompilationResult.cs" />
-    <Compile Include="SyntaxTree\SourceLocation.cs" />
-    <Compile Include="SyntaxTree\Span.cs" />
-    <Compile Include="SyntaxTree\SyntaxTreeNode.cs" />
-    <Compile Include="ITemplateHost.cs" />
+    <Compile Include="RazorEngineVNext.cs" />
+    <Compile Include="TemplateHostVNext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RazorSpy.Contracts\RazorSpy.Contracts.csproj">
+      <Project>{5f0cc878-487d-493e-9f7c-c9dd362212ed}</Project>
+      <Name>RazorSpy.Contracts</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)\RazorSpy\Packages" mkdir "$(SolutionDir)\RazorSpy\Packages"
+if not exist "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)" mkdir "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.dll" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"
+copy "$(TargetDir)\*.pdb" "$(SolutionDir)\RazorSpy\Packages\$(ProjectName)"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

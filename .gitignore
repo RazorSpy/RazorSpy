@@ -22,6 +22,9 @@ Thumbs.db
 bin/
 obj/
 
+#Solution items
+*.sln.ide/
+
 # .webinfo files are user-specific mappings for project endpoints
 # http://support.microsoft.com/kb/830611
 *.webinfo
